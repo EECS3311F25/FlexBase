@@ -1,4 +1,4 @@
-# Project Contact Sheet
+# Project Contact Info Sheet
 
 | Full Name      | Section | Student ID  | Email                | Best Way to Contact | Discord Username |
 |:---------------|:--------|:------------|:---------------------|:---------------------|:------------------|  
