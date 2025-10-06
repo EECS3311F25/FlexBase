@@ -10,6 +10,6 @@
 
 ---
 
-**Discord Chat/Server Invite:** [https://discord.gg/9rA9Rdffyk]
+**Discord Chat/Server Invite:** [https://discord.gg/Q9RUughWnm]
 
 **Invite for Trello has been sent out to both Prof. Ilir & TA Project Lead.**
