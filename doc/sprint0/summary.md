@@ -49,8 +49,8 @@ The system warns Stella that she might lose her workout streak. She alters her m
 ## Key Design Principles
 
 
-- **Simple and Efficient** The interface and features are intentionally simple in order for quick, effective usage of the system.
+- **Simple and Efficient:** The interface and features are intentionally simple in order for quick, effective usage of the system.
 
 - **Peace of Mind:** The user will always know what they want to do next, as the interface will make it obvious. No thinking should be needed to streamline their decision-making. 
 
-- **Beneficial Data** Visualizations should show the user's trends and potentially suggest changes (e.g., "You're consistent on Wednesday, but not Monday, want to make a change?"), data shouldn't be dumped and left to the user to interpret their trends. 
+- **Beneficial Data:** Visualizations should show the user's trends and potentially suggest changes (e.g., "You're consistent on Wednesday, but not Monday, want to make a change?"), data shouldn't be dumped and left to the user to interpret their trends. 
