@@ -18,22 +18,23 @@
 | -------------------- | ------------------------------------------------ | -------- |
 | Create Task        | Users can create tasks manually                  | High     |
 | Complete Task      | Users can finish tasks by marking them as "Complete", afterwards they will be auto-deleted.              | High     |
-| Dark & Light Mode      | UI Themeing for those who prefer a darker app. | Medium   |
+| Dark & Light Mode      | UI Themeing for those who prefer a darker app. | Low   |
 
 
 |  Epics (larger, long term feature to implement)      | What Does It Do?                                      | Priority |
 | -------------------- | ------------------------------------------------ | -------- |
+| Login System    | Separate Users, personalized tracking, multiple users can be on one desktop. | High
 | Task Priority System     | Users can identify high, medium & low priority habits or tasks, organized. | High
 | Task Reorganization    | Tasks/Habits are reorganized depending on priority and date.         | Medium     |
 | Personalization     | More in-depth customization for users (i.e. fonts, colours, tables, widgets). | Low   |
-| Calendar Implementation | Calendar view to show when tasks/habits are due or should be done by.           | High   |
+| Calendar Implementation | Calendar view to show when tasks/habits are due or should be done by.           | Medium   |
 
 ## Participants (To be updated!)
 
 |  Name      | Role|
 | -------------------- | -------|
-| Pranay               | ???     |
-| Shehbab               | ???     |
-| Amraj               | ???     |
-| Harshmeet               | ???     |
-| Thor               | ???     |
+| Pranay               | Product Owner + Developer    |
+| Shehbab               | Developer     |
+| Amraj               | Document Writer + Developer     |
+| Harshmeet               | Developer      |
+| Thor               | Developer     |
