@@ -17,7 +17,7 @@
 |  Features (smaller, short term feature to implement)       | What Does It Do?                                      | Priority |
 | -------------------- | ------------------------------------------------ | -------- |
 | Create Task        | Users can create tasks manually                  | High     |
-| Complete Task      | Users can finish tasks by marking them as "Complete".              | High     |
+| Complete Task      | Users can finish tasks by marking them as "Complete", afterwards they will be auto-deleted.              | High     |
 | Dark & Light Mode      | UI Themeing for those who prefer a darker app. | Medium   |
 
 
