@@ -33,8 +33,8 @@
 
 |  Name      | Role|
 | -------------------- | -------|
-| Pranay               | Product Owner + Developer    |
-| Shehbab               | Developer     |
-| Amraj               | Document Writer + Developer     |
-| Harshmeet               | Developer      |
-| Thor               | Developer     |
+| Pranay Tavanam               | Product Owner + Developer    |
+| Shehab Kandil               | Developer     |
+| Amraj Randhawa               | Document Writer + Developer     |
+| Harshmeet Malhotra               | Developer      |
+| Thor Laski               | Developer     |
