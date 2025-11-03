@@ -1,5 +1,5 @@
-#show tables from 3421_a2_2025;
-#describe assign;
+#show tables from flexbase_schema;
+#describe habit;
 
 create table HABIT (
  HABIT_ID int not null primary key,
@@ -8,3 +8,6 @@ create table HABIT (
  HABIT_TIME_START time,
  HABIT_TIME_END time
  );
+ 
+ select * from habit;
+ 
