@@ -4,7 +4,26 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * This is the login page, this is what the user will see the first time they run the app.
+ * The {@code LoginPage} class represents the initial screen of the FlexBase Habit Tracker application.
+ * <p>
+ * It serves as the entry point for users when they first launch the app.
+ * From this page, the user can navigate to the main habit tracking interface.
+ * </p>
+ *
+ * <h3>Features:</h3>
+ * <ul>
+ *     <li>Displays the app title prominently.</li>
+ *     <li>Includes a button that opens the HabitPage interface.</li>
+ *     <li>Shows a decorative calendar image to enhance the UI.</li>
+ * </ul>
+ *
+ * <h3>Example Usage:</h3>
+ * <pre>
+ *     LoginPage loginPage = new LoginPage();
+ *     loginPage.show();
+ * </pre>
+ *
+ * This will display the login screen to the user.
  */
 public class LoginPage {
 

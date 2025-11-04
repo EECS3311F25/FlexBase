@@ -4,6 +4,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * The {@code HabitPage} class provides a simple graphical interface for users
+ * to add and manage personal habits along with their priority levels.
+ * <p>
+ * It allows users to:
+ * <ul>
+ *     <li>Enter a habit name and its priority.</li>
+ *     <li>Add the habit to a scrollable list displayed at the bottom of the window.</li>
+ * </ul>
+ * 
+ * The UI is built using Swing components and follows a clean, minimal layout.
+ * </p>
+ * 
+ * Example:
+ * <pre>
+ *     HabitPage page = new HabitPage();
+ *     page.show();
+ * </pre>
+ * 
+ * This will launch the habit tracking window.
+ */
+
 public class HabitPage {
 
     private JFrame frame;
