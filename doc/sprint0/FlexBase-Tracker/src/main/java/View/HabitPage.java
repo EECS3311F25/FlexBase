@@ -3,6 +3,7 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import Controller.DatabaseController;
 
 /**
  * The {@code HabitPage} class provides a simple graphical interface for users
@@ -93,31 +94,47 @@ public class HabitPage {
         frame.add(scrollPane);
 
        
-        addButton.addActionListener(e -> {
-            String habit = habitField.getText().trim();
-            String priority = priorityField.getText().trim();
+    
+    
+    addButton.addActionListener(e -> {
+        String habit = habitField.getText().trim();
+        String priorityText = priorityField.getText().trim();
 
-            if (habit.isEmpty() || priority.isEmpty()) {
-                JOptionPane.showMessageDialog(frame, "Please fill out both fields.", "Missing Info", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
+        if (habit.isEmpty() || priorityText.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Please fill out both fields.", "Missing Info", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-            // Create a new label or small box for the habit
-            JPanel itemPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-            itemPanel.setBackground(new Color(240, 240, 240));
-            itemPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
-            itemPanel.add(new JLabel("Habit: " + habit + "    Priority: " + priority));
+        int priority;
+        try {
+            priority = Integer.parseInt(priorityText);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(frame, "Priority must be a number.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-            habitListPanel.add(itemPanel);
-            habitListPanel.revalidate();
-            habitListPanel.repaint();
+        // Save to database
+        DatabaseController.insertHabit(habit, priority);
 
-            // Clear input fields
-            habitField.setText("");
-            priorityField.setText("");
-        });
+        // Display habit on the screen
+        JPanel itemPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        itemPanel.setBackground(new Color(240, 240, 240));
+        itemPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        itemPanel.add(new JLabel("Habit: " + habit + "    Priority: " + priority));
+
+        habitListPanel.add(itemPanel);
+        habitListPanel.revalidate();
+        habitListPanel.repaint();
+
+        // Clear input fields
+        habitField.setText("");
+        priorityField.setText("");
+
+        JOptionPane.showMessageDialog(frame, "Habit added successfully!");
+    });
+
     }
-
+    
     public void show() {
         frame.setVisible(true);
     }
