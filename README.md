@@ -10,7 +10,7 @@ Installation:
 
 We have decided to use a Java based stack, using Swing to develop our GUI and Spring Boot to accelerate our application development process and make it efficient from front to back.
 
-You can install and use this app on your computer by doing the following:
+You can install and use this app on your computer by doing the following (The working version of the app is in the Merge-Test branch):
 - This app makes use of a MySQL Database, so install MySQL Workbench as well as a local MySQL server and get the server running
 - Use the Flexbase_schema.sql file provided in the Database folder and run it to create the schema. Then connect to the database via Workbench
 - Make sure you have the connector/J plugin installed on your IDE (Eclipse)
