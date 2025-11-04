@@ -14,27 +14,31 @@
 
 ## Scope Of Release (Key Features & Epics)
 
+####  Features Refer To The Following User Stories to Implement
+
+> 1. As Stella Woods (a working adult who is registered), I want to input a priority level for each of my habits/activities so the schedule planner can prioritize my important activities.
+> 
+> 2. As Stella Woods (a working adult who is registered), I want to be able to input new habits/activities on the fly so that the app can track my habits accurately.
+
 |  Features (smaller, short term feature to implement)       | What Does It Do?                                      | Priority |
 | -------------------- | ------------------------------------------------ | -------- |
 | Create Task        | Users can create tasks manually                  | High     |
 | Complete Task      | Users can finish tasks by marking them as "Complete", afterwards they will be auto-deleted.              | High     |
-| Dark & Light Mode      | UI Themeing for those who prefer a darker app. | Low   |
-
 
 |  Epics (larger, long term feature to implement)      | What Does It Do?                                      | Priority |
 | -------------------- | ------------------------------------------------ | -------- |
 | Login System    | Separate Users, personalized tracking, multiple users can be on one desktop. | High
 | Task Priority System     | Users can identify high, medium & low priority habits or tasks, organized. | High
 | Task Reorganization    | Tasks/Habits are reorganized depending on priority and date.         | Medium     |
-| Personalization     | More in-depth customization for users (i.e. fonts, colours, tables, widgets). | Low   |
+| Personalization     | More in-depth customization for users (i.e. fonts, colours, tables, widgets, Dark/Light Mode). | Low   |
 | Calendar Implementation | Calendar view to show when tasks/habits are due or should be done by.           | Medium   |
 
-## Participants (To be updated!)
-
+## Participants
+(NOTE: all of us ran our program on each of our devices, we really want to ensure that our app truly works, hence why we're all QA as well.)
 |  Name      | Role|
 | -------------------- | -------|
-| Pranay Tavanam               | Product Owner + Developer    |
-| Shehab Kandil               | Developer     |
-| Amraj Randhawa               | Document Writer + Developer     |
-| Harshmeet Malhotra               | Developer      |
-| Thor Laski               | Developer     |
+| Pranay Tavanam               | Product Owner + Developer + QA   |
+| Shehab Kandil               | Developer + QA     |
+| Amraj Randhawa               | Document Writer + Developer + QA    |
+| Harshmeet Malhotra               | Developer + QA    |
+| Thor Laski               | Developer  + System Design Writer + QA  |
