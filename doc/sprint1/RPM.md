@@ -3,7 +3,7 @@
 > ---
 >-  ### Project Name: FlexBase Tracker
 > - ### Release Version: 1.0
-> - ### Meet Date: ???
+> - ### Meet Date: Nov 3rd, 2025
 > - ### Meet Platform: Discord
 > --- 
 
