@@ -61,6 +61,19 @@ public class HabitPage {
         priorityLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
         priorityLabel.setBounds(200, 210, 100, 30);
         frame.add(priorityLabel);
+        
+        /*
+        //Description Label
+        JLabel DescLabel = new JLabel("Description:");
+        priorityLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+        priorityLabel.setBounds(200, 260, 100, 30);
+        frame.add(DescLabel);
+        
+     // Description TextField
+        JTextField DescField = new JTextField();
+        habitField.setBounds(300, 110, 300, 50);
+        frame.add(DescField);
+*/
 
         // Priority TextField
         JTextField priorityField = new JTextField();
