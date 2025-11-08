@@ -74,6 +74,22 @@ public class HabitPage {
         addButton.setBounds(340, 280, 120, 40);
         frame.add(addButton);
 
+        
+        // Todo - need to fix the location of it and add habit query in the SQL database
+        
+     // Date Label
+        JLabel dateLabel = new JLabel("Date:");
+        dateLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+        dateLabel.setBounds(200, 260, 100, 30);
+        frame.add(dateLabel);
+
+        // Date TextField
+        JTextField dateField = new JTextField("YYYY-MM-DD");
+        dateField.setBounds(300, 260, 300, 30);
+        frame.add(dateField);
+        
+        
+        
        // work in progress
 //        ImageIcon habitIcon = new ImageIcon(HabitPage.class.getResource("/images/Priorities_To_Do_List.png"));
 //        Image img = habitIcon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
