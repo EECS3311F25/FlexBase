@@ -1,6 +1,6 @@
 # Sprint 0 Marking Scheme
 
-**Total Score:** 40 / 48
+**Total Score:** 41 / 48
 
 ---
 
@@ -14,7 +14,7 @@
 - process.md: `doc/sprint0/process.md` ✓
 - README.md: `README.md` ✓
 - UI/UX files: `doc/sprint0/UI-UX.md` ✓
-- Setup (Frontend/Backend/Database): Frontend (React+TypeScript), Backend (Spring Boot+Java), Database (SQLite) - all properly configured
+
 
 ---
 
@@ -66,7 +66,7 @@
    
 ---
 
-Connect user stories to personas, complete technical setup, expand scenarios
+Complete technical setup, detailed installation instructions
 
 ## Total Mark
 **Sprint 0 Total Mark:** 41 / 48
