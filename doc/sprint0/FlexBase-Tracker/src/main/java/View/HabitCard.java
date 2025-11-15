@@ -35,13 +35,24 @@ class HabitCard extends JPanel {
 		
 		// NUM LABEL
 		//Centering/Sizing and cleanin up left segment, adding to card
-		JLabel numLabel = new JLabel(number);
-		numLabel.setFont(new Font("SansSerif", Font.BOLD,18));
-		numLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		numLabel.setPreferredSize(new Dimension(40, 40));
+		JPanel numPanel = new JPanel();
+		numPanel.setOpaque(false);
+		numPanel.setLayout(new BoxLayout(numPanel,BoxLayout.Y_AXIS));
 		
-		add(numLabel);
+		JLabel numTitle = new JLabel("Priority:");
+		numTitle.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		numTitle.setForeground(Color.DARK_GRAY);
+		
+		JLabel numValue = new JLabel(number);
+		numValue.setFont(new Font("SansSerif", Font.BOLD,18));
+		numValue.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		numPanel.add(numTitle);
+		numPanel.add(numValue);
+		numPanel.setPreferredSize(new Dimension(40, 40));
+		
+		add(numPanel);
 		
 		add(Box.createHorizontalStrut(10));
 		add(Box.createHorizontalGlue());
@@ -59,7 +70,7 @@ class HabitCard extends JPanel {
 		JLabel nameValue=new JLabel(name);
 		nameValue.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		
-		namePanel.add(nameTitle);
+		
 		namePanel.add(nameValue);
 		
 		add(namePanel);
