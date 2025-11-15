@@ -25,11 +25,11 @@ import java.awt.*;
  *
  * This will display the login screen to the user.
  */
-public class LoginPage {
+public class NewHabitPage {
 
     private JFrame frame;
 
-    public LoginPage() {
+    public NewHabitPage() {
         frame = new JFrame("FlexBase - Habit Tracker");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
@@ -40,32 +40,11 @@ public class LoginPage {
         titleLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
         titleLabel.setBounds(250, 40, 400, 40);
         frame.add(titleLabel);
-        
-     // Habit Label
-        JLabel userLabel = new JLabel("Username:");
-        userLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-        userLabel.setBounds(20, 210, 100, 30);
-        frame.add(userLabel);
 
-        // Habit TextField
-        JTextField userField = new JTextField();
-        userField.setBounds(120, 210, 300, 30);
-        frame.add(userField);
-        
-        JLabel passwordLabel = new JLabel("Password:");
-        passwordLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-        passwordLabel.setBounds(20, 260, 100, 30);
-        frame.add(passwordLabel);
-
-        // Habit TextField
-        JTextField passwordField = new JTextField();
-        passwordField.setBounds(120, 260, 300, 30);
-        frame.add(passwordField);
-
-        JButton loginButton = new JButton("Log-In");
+        JButton loginButton = new JButton("Enter Habit");
         loginButton.setFont(new Font("SansSerif", Font.PLAIN, 18));
         loginButton.setFocusPainted(false);
-        loginButton.setBounds(150, 300, 150, 50);
+        loginButton.setBounds(150, 250, 150, 50);
         frame.add(loginButton);
 
 //        JButton createUserButton = new JButton("Create New User");
@@ -74,7 +53,7 @@ public class LoginPage {
 //        createUserButton.setBounds(150, 350, 150, 50);
 //        frame.add(createUserButton);
 
-        ImageIcon calendarIcon = new ImageIcon(LoginPage.class.getResource("/images/2025Cal.png"));
+        ImageIcon calendarIcon = new ImageIcon(NewHabitPage.class.getResource("/images/2025Cal.png"));
         Image img = calendarIcon.getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH);
         calendarIcon = new ImageIcon(img);
 
@@ -82,20 +61,10 @@ public class LoginPage {
         calendarLabel.setBounds(400, 120, 350, 400);
         frame.add(calendarLabel);
 
-        
        
         loginButton.addActionListener(e -> {
-        	String userName = userField.getText().trim();
-            String password = passwordField.getText().trim();
-        	//Here, add check for database?
-        	if(userName.equals("flex") && password.equals("1")) {
-        		frame.dispose();            // close current login window
-                new NewHabitPage().show();     // open the Habit page
-        	}
-        	else {
-        		JOptionPane.showMessageDialog(frame, "No user with entered log-in information");
-        	}
-            
+            frame.dispose();            // close current login window
+            new HabitPage().show();     // open the Habit page
         });
     }
 

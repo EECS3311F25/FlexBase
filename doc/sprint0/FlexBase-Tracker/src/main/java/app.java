@@ -1,4 +1,5 @@
 import View.LoginPage;
+import View.NewHabitPage;
 
 /**
  * This is where the app will run from
