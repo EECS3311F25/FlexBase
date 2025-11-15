@@ -7,7 +7,7 @@ public class DatabaseController {
 	// Declare and initialize DB connection parameters
     private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/flexbase_schema";
     private static final String DB_USER = "root";
-    private static final String DB_PASS = "Root1234";
+    private static final String DB_PASS = "JarmaSQL13@!";
 
     // USING THIS METHOD IN THE UI CLASS CALLED HABITPAGE
     public static void insertHabit(String habitName, int habitPriority) {
