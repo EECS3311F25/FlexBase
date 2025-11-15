@@ -47,6 +47,12 @@ public class LoginPage {
         loginButton.setBounds(150, 250, 150, 50);
         frame.add(loginButton);
 
+        JButton createUser = new JButton("Create User");
+        createUser.setFont(new Font("SansSerif", Font.PLAIN, 18));
+        createUser.setFocusPainted(false);
+        createUser.setBounds(150, 350, 150, 50);
+        frame.add(createUser);
+
 //        JButton createUserButton = new JButton("Create New User");
 //        createUserButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
 //        createUserButton.setFocusPainted(false);
@@ -60,13 +66,20 @@ public class LoginPage {
         JLabel calendarLabel = new JLabel(calendarIcon);
         calendarLabel.setBounds(400, 120, 350, 400);
         frame.add(calendarLabel);
-
+        
+        
+        createUser.addActionListener(e -> {
+            frame.dispose();            // close current login window
+            new CreateUserPage().show();     // open the Habit page
+        });
        
         loginButton.addActionListener(e -> {
             frame.dispose();            // close current login window
             new HabitPage().show();     // open the Habit page
         });
     }
+
+
 
     public void show() {
         frame.setVisible(true);
