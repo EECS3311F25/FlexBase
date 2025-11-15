@@ -46,11 +46,23 @@ class HabitCard extends JPanel {
 		add(Box.createHorizontalStrut(10));
 		add(Box.createHorizontalGlue());
 		
-		// NAME LABEL
-		JLabel nameLabel = new JLabel(name);
-		nameLabel.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		// NAME PANEL
 		
-		add(nameLabel);
+		JPanel namePanel = new JPanel();
+		namePanel.setOpaque(false);
+		namePanel.setLayout(new BoxLayout(namePanel,BoxLayout.Y_AXIS));
+		
+		JLabel nameTitle = new JLabel("Name:");
+		nameTitle.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		nameTitle.setForeground(Color.DARK_GRAY);
+		
+		JLabel nameValue=new JLabel(name);
+		nameValue.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		
+		namePanel.add(nameTitle);
+		namePanel.add(nameValue);
+		
+		add(namePanel);
 		
 		//To help make sure all elements are centered right, this helps the right ones from being too far right
 		add(Box.createHorizontalGlue());
