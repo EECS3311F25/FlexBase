@@ -15,10 +15,11 @@ import java.awt.*;
 class HabitCard extends JPanel {
 	private final Color bgColor;
 	
-	public HabitCard(String number, String name, Color bgColor) {
+	public HabitCard(String number, String name, String hours, Color bgColor) {
 		this.bgColor = bgColor;
 		
-		//So card stays consisten sized
+		
+		//So card stays consistent sized
 		setPreferredSize(new Dimension(550, 80));
 		setMaximumSize(new Dimension(Integer.MAX_VALUE, 80));
 		
@@ -26,11 +27,13 @@ class HabitCard extends JPanel {
 		setOpaque(false);
 		
 		//Card layout, using 10 pixel gap between segments
-		setLayout(new BorderLayout(10, 0));
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
 		//Padding
 		setBorder(new EmptyBorder(10,15,10,15));
 		
+		
+		// NUM LABEL
 		//Centering/Sizing and cleanin up left segment, adding to card
 		JLabel numLabel = new JLabel(number);
 		numLabel.setFont(new Font("SansSerif", Font.BOLD,18));
@@ -38,12 +41,33 @@ class HabitCard extends JPanel {
 		
 		numLabel.setPreferredSize(new Dimension(40, 40));
 		
-		add(numLabel, BorderLayout.WEST);
+		add(numLabel);
 		
+		add(Box.createHorizontalStrut(10));
+		add(Box.createHorizontalGlue());
+		
+		// NAME LABEL
 		JLabel nameLabel = new JLabel(name);
 		nameLabel.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		
-		add(nameLabel, BorderLayout.CENTER);
+		add(nameLabel);
+		
+		//To help make sure all elements are centered right, this helps the right ones from being too far right
+		add(Box.createHorizontalGlue());
+		
+		
+		
+		// HOURS LABEL
+		JLabel hoursLabel = new JLabel(hours);
+		hoursLabel.setFont(new Font("SansSerif", Font.BOLD,18));
+		hoursLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		hoursLabel.setPreferredSize(new Dimension(40,40));
+		
+		add(hoursLabel);
+		
+		add(Box.createHorizontalStrut(10));
+		
 	}
 	
 	/**

@@ -64,15 +64,15 @@ public class HabitPage {
        
         
         //Description Label
-        JLabel DescLabel = new JLabel("Description:");
-        DescLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-        DescLabel.setBounds(200, 260, 120, 30);
-        frame.add(DescLabel);
+        JLabel hoursLabel = new JLabel("Hours:");
+        hoursLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+        hoursLabel.setBounds(200, 260, 120, 30);
+        frame.add(hoursLabel);
         
       //Description TextField
-        JTextField DescField = new JTextField();
-        DescField.setBounds(300, 260, 300, 30);
-        frame.add(DescField);
+        JTextField hoursField = new JTextField();
+        hoursField.setBounds(300, 260, 300, 30);
+        frame.add(hoursField);
 
 
         // Priority TextField
@@ -112,7 +112,7 @@ public class HabitPage {
     addButton.addActionListener(e -> {
         String habit = habitField.getText().trim();
         String priorityText = priorityField.getText().trim();
-        String description = DescField.getText().trim();
+        String hours = hoursField.getText().trim();
 
         if (habit.isEmpty() || priorityText.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Please fill out both fields.", "Missing Info", JOptionPane.WARNING_MESSAGE);
@@ -164,7 +164,7 @@ public class HabitPage {
         	cardColor = new Color(186, 85, 211);
         }
         
-        HabitCard card = new HabitCard(String.valueOf(priority), habit, cardColor);
+        HabitCard card = new HabitCard(String.valueOf(priority), habit, hours, cardColor);
         
         habitListPanel.add(card);
         
