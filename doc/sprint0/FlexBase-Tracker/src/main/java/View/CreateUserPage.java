@@ -22,7 +22,7 @@ public class CreateUserPage {
 		// title label
 		JLabel titleLabel = new JLabel("Create a User");
 		titleLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
-		titleLabel.setBounds(280, 40, 400, 40);
+		titleLabel.setBounds(330, 40, 400, 40);
 		frame.add(titleLabel);
 
 		// username label
@@ -72,6 +72,7 @@ public class CreateUserPage {
 
 		// back button should go BACK to the login page
 		backButton.addActionListener(e -> {
+			// close the current window
 			frame.dispose();
 			new LoginPage().show();
 		});
@@ -82,20 +83,25 @@ public class CreateUserPage {
 			String password = new String(passInput.getPassword());
 			String confirmPassword = new String(confirmPassInput.getPassword());
 
+			// if not all fields are filled throw a warning
+			// and ask user to fill them in
 			if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
 				JOptionPane.showMessageDialog(frame, "Please fill out all fields.", "Missing Info",
 						JOptionPane.WARNING_MESSAGE);
 				return;
 			}
 
+			// if the passwords aren't the same warn the user
 			if (!password.equals(confirmPassword)) {
 				JOptionPane.showMessageDialog(frame, "Passwords are not the same!", "Error",
 						JOptionPane.WARNING_MESSAGE);
 				return;
 			}
 
+			// otherwise let the user know their account's been created successfully
 			JOptionPane.showMessageDialog(frame, "Account has been created successfully.");
 			// go to habit page
+			// close the current window
 			frame.dispose();
 			new HabitPage().show();
 
