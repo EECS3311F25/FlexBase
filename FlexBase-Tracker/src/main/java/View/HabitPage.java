@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import Controller.DatabaseController;
 
 /**
@@ -60,6 +61,19 @@ public class HabitPage {
         priorityLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
         priorityLabel.setBounds(200, 210, 100, 30);
         frame.add(priorityLabel);
+       
+        
+        //Description Label
+        JLabel hoursLabel = new JLabel("Hours:");
+        hoursLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+        hoursLabel.setBounds(200, 260, 120, 30);
+        frame.add(hoursLabel);
+        
+      //Description TextField
+        JTextField hoursField = new JTextField();
+        hoursField.setBounds(300, 260, 300, 30);
+        frame.add(hoursField);
+
 
         // Priority TextField
         JTextField priorityField = new JTextField();
@@ -70,7 +84,7 @@ public class HabitPage {
         JButton addButton = new JButton("Add Habit");
         addButton.setFont(new Font("SansSerif", Font.PLAIN, 16));
         addButton.setFocusPainted(false);
-        addButton.setBounds(340, 280, 120, 40);
+        addButton.setBounds(340, 300, 120, 40);
         frame.add(addButton);
 
        // work in progress
@@ -98,6 +112,7 @@ public class HabitPage {
     addButton.addActionListener(e -> {
         String habit = habitField.getText().trim();
         String priorityText = priorityField.getText().trim();
+        String hours = hoursField.getText().trim();
 
         if (habit.isEmpty() || priorityText.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Please fill out both fields.", "Missing Info", JOptionPane.WARNING_MESSAGE);
@@ -115,7 +130,9 @@ public class HabitPage {
         // Save to database
         DatabaseController.insertHabit(habit, priority);
 
+       
         // Display habit on the screen
+/*
         JPanel itemPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         itemPanel.setBackground(new Color(240, 240, 240));
         itemPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
@@ -130,6 +147,32 @@ public class HabitPage {
         priorityField.setText("");
 
         JOptionPane.showMessageDialog(frame, "Habit added successfully!");
+*/
+        //                TESTING NEW CARD
+        Color cardColor = new Color(0, 0, 0);
+        //Makes it Light Green for low prio
+        if (priority <= 3) {
+        	cardColor = new Color(152, 251, 152);
+        	
+        }
+        //Makes it Blue for mid prio
+        else if (priority <= 6) {
+        	cardColor = new Color(135, 206, 250);
+        }
+        //Purple for high prio
+        else {
+        	cardColor = new Color(186, 85, 211);
+        }
+        
+        HabitCard card = new HabitCard(String.valueOf(priority), habit, hours, cardColor);
+        
+        habitListPanel.add(card);
+        
+        //Spacing
+        habitListPanel.add(Box.createVerticalStrut(8));
+        
+        habitListPanel.revalidate();
+        habitListPanel.repaint();
     });
 
     }
