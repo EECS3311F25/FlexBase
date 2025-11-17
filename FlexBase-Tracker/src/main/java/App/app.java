@@ -1,13 +1,13 @@
 package App;
 
-import View.HomePage;
+import View.*;
 
 /**
  * This is where the app will run from
  */
 public class app {
     public static void main(String[] args) {
-        HomePage app = new HomePage();
+        LoginPage app = new LoginPage();
         app.show();
     }
 }
