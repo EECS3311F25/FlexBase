@@ -1,4 +1,4 @@
-##  Sprint 1 Retrospective Meeting
+##  Sprint 2 Retrospective Meeting
 
 ## Participants 
 |  Name      |
