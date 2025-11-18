@@ -11,7 +11,7 @@ import java.sql.*;
 public class DBOutput
 {
 	
-	// static method to fetch data from DB and return as String
+	// static method to fetch data from DB and return rows as ResultSet
 	public static ResultSet getData(String query)
 	{
 		ResultSet rs = null;
