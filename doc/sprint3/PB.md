@@ -1,20 +1,10 @@
-US(3) As Cyrus Brown (a university student who is not registered), I want to register so I can use the schedule planner. (9)
-
-US(4) As Cyrus Brown (a university student who is registered), I want to login so I can use the schedule planner. (9)
-
-US(5) As Logan Sherwood (a working parent who is registered), I want to be able to click a button to be able to logout so that I can ensure my entries aren't changed. (9)
-
 US(6) As Logan Sherwood (a working parent who is registered), I want to be able to see an overview of my schedule and optimized schedule so I can make an active decision about what to do next. (8)
-
-US(7) As Stella Woods (a working adult who is registered), I want to be able to see my inputted habits on a calendar so I can have a visual representation of my current schedule. (8)
 
 US(8) As Logan Sherwood (a working parent who is registered), I want the app to create my schedule by reorganizing my daily habits/activities so that I have an improved schedule for the week. (7)
 
 US(9) As Stella Woods (a working adult who is registered), I want to be able to see my fully optimized schedule for the day/week so that I may follow my new schedule for the week. (7)
 
 US(10) As Cyrus Brown (a university student who is registered), I want the schedule to indicate what my last added activity was so that I can keep track of my schedule accurately. (7)
-
-US(11) As Stella Wood (a working adult who is registered), I want to be able to see my habits with different colors for different priorities so that I have an easy visual indicator for what I need to prioritize. (7)
 
 US(11) As Stella Woods (a working adult who is registered), I want to be able to re-prioritize my daily habits/activities so that the app can adjust my schedule accordingly. (6)
 
