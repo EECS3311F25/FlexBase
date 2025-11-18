@@ -1,4 +1,6 @@
-13/11/2025 - Sprint 2 Standup 2
+13/11/2025 - Sprint 2 Standup 2 - Group Standup
+
+Names: Pranay, Amraj, Shahab, Harsh, Thor
 
 1. What did you work on since the last standup?
 - simplify code to have better organization
@@ -10,4 +12,7 @@
 - midterm madness got me working around the clock - sometime soon
 
 4. Do you have any blockers?
-- self-esteem and lack of time to be organized 
+- self-esteem and lack of time to be organized
+- Midterm studying
+- other classes
+  
