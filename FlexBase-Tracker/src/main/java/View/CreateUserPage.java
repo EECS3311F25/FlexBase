@@ -5,6 +5,10 @@ import java.awt.Font;
 
 import javax.swing.*;
 
+import Model.DBInput;
+
+import java.sql.*;
+
 /**
  * This is the UI of what happens the user clicks the 'create new user' button
  */
@@ -101,10 +105,24 @@ public class CreateUserPage {
 						JOptionPane.WARNING_MESSAGE);
 				return;
 			}
-
-			// otherwise let the user know their account's been created successfully
+			
+			// if data has been input verified, enter user login info into DB
+			String query = "insert into user_info (user_name, user_pass) values"
+					+ "('"+ username + "', '" + password + "');";
+			
+			try
+			{
+				DBInput.input(query);
+			}
+			
+			catch (SQLException error)
+			{
+				System.out.println(error);
+			}
+			
+			// let the user know their account's been created successfully
 			JOptionPane.showMessageDialog(frame, "Account has been created successfully.");
-			// go to habit page
+			// go to login page
 			// close the current window
 			frame.dispose();
 			new HomePage().show();
