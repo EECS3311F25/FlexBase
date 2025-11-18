@@ -10,8 +10,8 @@ public class DatabaseController {
     private static final String DB_PASS = "Root1234";
 
     // USING THIS METHOD IN THE UI CLASS CALLED HABITPAGE
-    public static void insertHabit(String habitName, int habitPriority) {
-    	
+    public static int insertHabit(String habitName, int habitPriority) {
+    	int habitID = -1;
     	// create template with placeholders for SQL query to input habit attributes
     	String query = "INSERT INTO habit (HABIT_NAME, HABIT_PRIORITY, HABIT_TIME_START, HABIT_TIME_END) VALUES (?, ?, ?, ?)";
 
@@ -36,6 +36,14 @@ public class DatabaseController {
 
                 stmt.executeUpdate();
                 
+                
+                
+                try(ResultSet rs = stmt.getGeneratedKeys()) {
+                	if(rs.next()) {
+                		habitID = rs.getInt(1);
+                	}
+                }
+                
                 System.out.println("✅ Habit inserted: " + habitName);
             }
         } catch (SQLException e) {
@@ -43,5 +51,9 @@ public class DatabaseController {
         } catch (ClassNotFoundException e) {
             System.err.println("❌ JDBC Driver not found: " + e.getMessage());
         }
+        return habitID;
+    }
+    public static void updateHabit(String name, int habitPriority) {
+    	
     }
 }
