@@ -17,6 +17,7 @@ public class DBConnector
     private static final String DB_PASS = "Root1234";
     
     // static method to connect to DB on local server and return the connection
+    
     public static Connection connectDB() throws SQLException
     {
     	Connection con = null;

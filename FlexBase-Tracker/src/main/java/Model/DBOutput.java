@@ -12,9 +12,26 @@ public class DBOutput
 {
 	
 	// static method to fetch data from DB and return as String
-	public static String getData()
+	public static ResultSet getData(String query)
 	{
-		return "";
+		ResultSet rs = null;
+		
+		// attempt statement execution
+			try
+			{
+				// Connect to DB
+				// load and execute output SQL query
+				PreparedStatement stmt = DBConnector.connectDB().prepareStatement(query);
+				rs = stmt.executeQuery();
+			}
+			
+			// catch DB access errors
+			catch (SQLException e)
+			{
+				System.err.println("Failed to access Database: " + e);
+			}
+			
+			return rs;
 	}
 
 }

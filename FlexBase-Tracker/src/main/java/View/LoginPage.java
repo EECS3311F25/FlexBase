@@ -1,6 +1,8 @@
 package View;
+import Model.*;
 
 import javax.swing.*;
+import java.sql.*;
 import java.awt.*;
 
 /**
@@ -84,13 +86,30 @@ public class LoginPage {
         calendarLabel.setBounds(400, 120, 350, 400);
         frame.add(calendarLabel);
 	*/
-        
        
         loginButton.addActionListener(e -> {
         	String userName = userField.getText().trim();
             String password = passwordField.getText().trim();
-        	//Here, add check for database?
-        	if(userName.equals("flex") && password.equals("1")) {
+            boolean userExists = false;
+        	
+            // check DB for user info
+            ResultSet userInfo = DBOutput.getData("select * from user_info");
+            
+            try
+            {
+            	while(userInfo.next())
+                {
+    		    	// check if user exists in DB					// if user exists, check if password belongs to same user
+            		if (userInfo.getString(2).equals(userName)) if (userInfo.getString(3).equals(password)) userExists = true;
+    		    }
+            }
+            catch (SQLException error)
+            {
+            	System.out.println("SQL ERROR!");
+            }
+            
+            
+            if(userExists) {
         		frame.dispose();            // close current login window
                 new HomePage().show();     // open the Home page
         	}
