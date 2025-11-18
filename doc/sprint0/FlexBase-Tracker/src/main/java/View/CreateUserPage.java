@@ -67,7 +67,11 @@ public class CreateUserPage {
 		// button to go back to main page
 		JButton backButton = new JButton("Go Back");
 		backButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		backButton.setBounds(40, 20, 100, 20);
+		backButton.setBounds(40, 20, 100, 40);
+		
+		// had to do this because it kept on having a smaller box
+		// surround the text that says "Go Back".
+		backButton.setFocusPainted(false);
 		frame.add(backButton);
 
 		// back button should go BACK to the login page
