@@ -108,15 +108,16 @@ public class CreateUserPage {
 				return;
 			}
 			
-			// sort through already created usernames to check if user input is unique
+			// result set to sort through already created usernames to check if user input is unique
 			ResultSet users = DBOutput.getData("select * from user_info");
 			boolean userExists = false;
 			
-			// if user already exists in DB, ask user to make new username
 			try
-			{
+			{				
+				// username input verification
 				while (users.next())
-				{
+				{	
+					// if user already exists in DB, ask user to make new username
 					if (users.getString(2).equals(username))
 					{
 						JOptionPane.showMessageDialog(frame, "User aleady exists!");
@@ -125,20 +126,8 @@ public class CreateUserPage {
 					}
 				}
 				
-				if (!userExists)
-				{
-					// if data has been input verified, enter user login info into DB
-					String query = "insert into user_info (user_name, user_pass) values"
-							+ "('"+ username + "', '" + password + "');";
-					DBInput.input(query);
-					
-					// let the user know their account's been created successfully
-					JOptionPane.showMessageDialog(frame, "Account has been created successfully.");
-					// go to login page
-					// close the current window
-					frame.dispose();
-					new HomePage().show();
-				}
+				// if no users in DB/the user doesn't exist in DB, create new user
+				if (!users.next() && userExists == false) this.enterUser(username, password);
 			}
 			
 			catch (SQLException error)
@@ -148,6 +137,26 @@ public class CreateUserPage {
 
 		});
 
+	}
+	
+	// method to create user in DB
+	private void enterUser(String username, String password)
+	{
+		// DB query with user info parameters
+		String query = "insert into user_info (user_name, user_pass) values"
+				+ "('"+ username + "', '" + password + "');";
+		
+		// input user data in DB
+		try { DBInput.input(query); }
+		catch (SQLException error) { System.out.println(error); }
+		
+		
+		// let the user know their account's been created successfully
+		JOptionPane.showMessageDialog(frame, "Account has been created successfully.");
+		// go to login page
+		// close the current window
+		frame.dispose();
+		new HomePage().show();
 	}
 
 	public void show() {
