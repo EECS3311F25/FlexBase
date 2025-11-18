@@ -9,7 +9,7 @@
     #select * from user_info;
     #select * from optimized_habit;
     
-    #drop table habit, user_info;
+    #drop table optimized_habit, habit, user_info;
 
 # create USER_INFO table to store user information
 create table USER_INFO (
