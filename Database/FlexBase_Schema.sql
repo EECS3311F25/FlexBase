@@ -1,24 +1,13 @@
-## commented test code to verify table behavior
-	#show tables from flexbase_schema;
-    
-    #describe user_info;
-	#describe habit;
-    #describe optimized_habit;
-    
-	#select * from habit;
-    #select * from user_info;
-    #select * from optimized_habit;
-    
-    #drop table optimized_habit, habit, user_info;
+## FlexBase Database Schema
 
-# create USER_INFO table to store user information
+## create USER_INFO table to store user information
 create table USER_INFO (
 USER_ID int not null auto_increment primary key,
 USER_NAME char(50) not null,
 USER_PASS char(50) not null
 );
 
-# create HABIT table to store all attributes of user's habits
+## create HABIT table to store all attributes of user's habits
 create table HABIT (
  HABIT_ID int not null auto_increment primary key,
  #USER_ID int not null,
@@ -29,7 +18,7 @@ create table HABIT (
  #foreign key (USER_ID) references USER_INFO(USER_ID)
  );
  
- # create OPTIMIZED_HABIT table to store optimized habits and their attributes
+ ## create OPTIMIZED_HABIT table to store optimized habits and their attributes
  create table OPTIMIZED_HABIT (
  O_HABIT_ID int not null auto_increment primary key,
  USER_ID int not null,
@@ -40,14 +29,31 @@ create table HABIT (
  foreign key (O_HABIT_ID) references HABIT(HABIT_ID),
  foreign key (USER_ID) references USER_INFO(USER_ID)
  );
+ 
+ 
+ 
+ ## commented test code to verify table behavior
 
+## table functionality/content testing
+    #show tables from flexbase_schema;
+    
+    #describe user_info;
+	#describe habit;
+    #describe optimized_habit;
+    
+    #select * from user_info;
+	#select * from habit;
+	#select * from optimized_habit;
+  
+## clearing or resetting tables  
+    #delete from user_info;
+    #delete from habit;
+    #delete from optimized_habit;
+    
+    #drop table user_info, habit, optimized_habit;
 
-## funtionality testing with manually inputted values
+## execute together to clear tables    
+    #SET FOREIGN_KEY_CHECKS = 0;
+	#TRUNCATE TABLE user_info;
+	#SET FOREIGN_KEY_CHECKS = 1;
 
-	#insert into user_info (user_name, user_pass) values
-	#('pranay', 'password'),
-	#('thor', 'pass'),
-	#('amraj', '123')
-	#;
-
-	#select * from user_info;

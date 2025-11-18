@@ -5,7 +5,8 @@ import java.sql.*;
 /*
  * DBOutput class uses a static method to fetch required data from the local database and returns it to the class it's called in.
  * This class is called in:
- * + 
+ * RegisterController
+ * LoginController
  */
 
 public class DBOutput
@@ -17,21 +18,21 @@ public class DBOutput
 		ResultSet rs = null;
 		
 		// attempt statement execution
-			try
-			{
-				// Connect to DB
-				// load and execute output SQL query
-				PreparedStatement stmt = DBConnector.connectDB().prepareStatement(query);
-				rs = stmt.executeQuery();
-			}
-			
-			// catch DB access errors
-			catch (SQLException e)
-			{
-				System.err.println("Failed to access Database: " + e);
-			}
-			
-			return rs;
+		try
+		{
+			// Connect to DB
+			// load and execute output SQL query
+			PreparedStatement stmt = DBConnector.connectDB().prepareStatement(query);
+			rs = stmt.executeQuery();
+		}
+		
+		// catch DB access errors
+		catch (SQLException e)
+		{
+			System.err.println("Failed to access Database: " + e);
+		}
+		
+		return rs;
 	}
 
 }

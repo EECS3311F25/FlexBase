@@ -93,8 +93,22 @@ public class LoginPage {
 		 * 120, 350, 400); frame.add(calendarLabel);
 		 */
         
-        // call to RegisterController class to handle create user logic
-        LoginController.login(frame, loginButton, userField, passwordField);
+        // button click - attempt to login
+        loginButton.addActionListener(e -> {
+	    	String userName = userField.getText().trim();
+	        String password = passwordField.getText().trim();
+	     
+	        // call to LoginController class to handle login validation logic
+	        boolean userExists = LoginController.login(frame, loginButton, userName, password);
+	        
+	        if(userExists) {
+	    		frame.dispose();            // close current login window
+	            new HomePage().show();     // open the Home page
+	    	}
+	    	else {
+	    		JOptionPane.showMessageDialog(frame, "No user with entered log-in information");
+	    	}
+        });
 	}
 
 	public void show() {

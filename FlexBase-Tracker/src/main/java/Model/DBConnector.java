@@ -5,7 +5,8 @@ import java.sql.*;
 /*
  * DBConnector class uses a static method to get a connection to the database on the local server.
  * This class is called in:
- * + 
+ * DBInput
+ * DBOutput
  */
 
 public class DBConnector

@@ -5,7 +5,7 @@ import java.sql.*;
 /*
  * DBInput class uses a static method to pass input parameters into the local database.
  * This class is called in:
- * + 
+ * RegisterController
  */
 
 public class DBInput
