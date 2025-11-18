@@ -1,4 +1,4 @@
-11/11/2025 - Sprint 2 Standup 1
+11/11/2025 - Sprint 2 Standup 1 - Group Standup
 
 Names: Pranay, Amraj, Shahab, Harsh, Thor
 
