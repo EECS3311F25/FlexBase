@@ -1,6 +1,9 @@
 package Controller;
 
 import java.sql.*;
+import java.util.List;
+import java.util.ArrayList;
+
 
 public class DatabaseController {
 
@@ -36,4 +39,7 @@ public class DatabaseController {
             System.err.println("❌ JDBC Driver not found: " + e.getMessage());
         }
     }
+    
+    
+
 }
