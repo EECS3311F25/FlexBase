@@ -24,3 +24,6 @@ Our branches are named after the sub-topic being altered and the version number.
 
 Since we have direct communication between all members, we do not use pull requests but instead use our meetings to confirm changes and push to main branch.
 
+Sprint 2 Demo Video:
+
+https://drive.google.com/file/d/11LvTGkR8crgmRktYyWqIVqEz_QNUNwn4/view?usp=drive_link
