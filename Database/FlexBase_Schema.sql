@@ -44,10 +44,10 @@ create table HABIT (
 
 ## funtionality testing with manually inputted values
 
-insert into user_info (user_name, user_pass) values
-('pranay', 'password'),
-('thor', 'pass'),
-('amraj', '123')
-;
+	#insert into user_info (user_name, user_pass) values
+	#('pranay', 'password'),
+	#('thor', 'pass'),
+	#('amraj', '123')
+	#;
 
-select * from user_info;
+	#select * from user_info;
