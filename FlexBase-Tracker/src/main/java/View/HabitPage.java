@@ -38,6 +38,13 @@ public class HabitPage {
         frame.setSize(800, 600);
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setLayout(null);
+        
+        //Back button
+        JButton backButton = new JButton("Go Back");
+        backButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        backButton.setFocusPainted(false);
+        backButton.setBounds(10, 10, 100, 35);
+        frame.add(backButton);
 
         // Title Label
         JLabel titleLabel = new JLabel("Add a New Habit");
@@ -105,9 +112,11 @@ public class HabitPage {
         scrollPane.setBounds(100, 350, 600, 180);
         scrollPane.setBorder(BorderFactory.createTitledBorder("Your Habits"));
         frame.add(scrollPane);
-
-       
-    
+        
+        backButton.addActionListener(e -> {
+            frame.dispose();            // close current habit window
+            new HomePage().show();     // open the Home page
+        });
     
     addButton.addActionListener(e -> {
         String habit = habitField.getText().trim();

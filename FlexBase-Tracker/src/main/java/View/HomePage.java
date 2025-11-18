@@ -46,6 +46,13 @@ public class HomePage {
         loginButton.setFocusPainted(false);
         loginButton.setBounds(150, 250, 150, 50);
         frame.add(loginButton);
+        
+        //Logout button
+        JButton logoutButton = new JButton("Logout");
+        logoutButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        logoutButton.setFocusPainted(false);
+        logoutButton.setBounds(10, 10, 100, 35);
+        frame.add(logoutButton);
 
 //        JButton createUserButton = new JButton("Create New User");
 //        createUserButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
@@ -63,8 +70,13 @@ public class HomePage {
 
        
         loginButton.addActionListener(e -> {
-            frame.dispose();            // close current login window
+            frame.dispose();            // close current home window
             new HabitPage().show();     // open the Habit page
+        });
+        
+        logoutButton.addActionListener(e -> {
+            frame.dispose();            // close current home window
+            new LoginPage().show();     // open the Login page
         });
     }
 
