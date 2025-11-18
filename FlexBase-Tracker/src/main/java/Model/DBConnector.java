@@ -52,3 +52,35 @@ public class DBConnector
     	return con;
     }
 }
+
+
+// Code from original DatabaseController class for reference
+
+//try-catch statement to connect to database and input habits
+// catches database driver and connection error
+//try {
+//    
+//	// get DB driver
+//	Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//	// connect to DB
+//    try (Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+//         PreparedStatement stmt = con.prepareStatement(query)) {
+//
+//        // Set parameters
+//        stmt.setString(1, habitName);
+//        stmt.setInt(2, habitPriority);
+//
+//        // Optional: for now, we’ll set null for start and end times
+//        stmt.setNull(3, Types.TIME);
+//        stmt.setNull(4, Types.TIME);
+//
+//        stmt.executeUpdate();
+//        
+//        System.out.println("✅ Habit inserted: " + habitName);
+//    }
+//} catch (SQLException e) {
+//    System.err.println("❌ Database error: " + e.getMessage());
+//} catch (ClassNotFoundException e) {
+//    System.err.println("❌ JDBC Driver not found: " + e.getMessage());
+//}

@@ -2,8 +2,9 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import Controller.DatabaseController;
+import java.sql.SQLException;
+
+import Model.DBInput;
 
 /**
  * The {@code HabitPage} class provides a simple graphical interface for users
@@ -55,37 +56,46 @@ public class HabitPage {
         // Habit Label
         JLabel habitLabel = new JLabel("Habit:");
         habitLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-        habitLabel.setBounds(200, 160, 100, 30);
+        habitLabel.setBounds(200, 110, 100, 30);
         frame.add(habitLabel);
-
-        // Habit TextField
-        JTextField habitField = new JTextField();
-        habitField.setBounds(300, 160, 300, 30);
-        frame.add(habitField);
 
         // Priority Label
         JLabel priorityLabel = new JLabel("Priority:");
         priorityLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-        priorityLabel.setBounds(200, 210, 100, 30);
+        priorityLabel.setBounds(200, 160, 100, 30);
         frame.add(priorityLabel);
        
         
         //Description Label
-        JLabel hoursLabel = new JLabel("Hours:");
-        hoursLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-        hoursLabel.setBounds(200, 260, 120, 30);
-        frame.add(hoursLabel);
+        JLabel startTimeLabel = new JLabel("Start Time:");
+        startTimeLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+        startTimeLabel.setBounds(200, 210, 120, 30);
+        frame.add(startTimeLabel);
+        
+        JLabel endTimeLabel = new JLabel("End Time:");
+        endTimeLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+        endTimeLabel.setBounds(200, 260, 120, 30);
+        frame.add(endTimeLabel);
+        
+      //Habit TextField
+        JTextField habitField = new JTextField();
+        habitField.setBounds(300, 110, 300, 30);
+        frame.add(habitField);
+        
+      //Priority TextField
+        JTextField priorityField = new JTextField();
+        priorityField.setBounds(300, 160, 300, 30);
+        frame.add(priorityField);
         
       //Description TextField
-        JTextField hoursField = new JTextField();
-        hoursField.setBounds(300, 260, 300, 30);
-        frame.add(hoursField);
-
-
-        // Priority TextField
-        JTextField priorityField = new JTextField();
-        priorityField.setBounds(300, 210, 300, 30);
-        frame.add(priorityField);
+        JTextField startTimeField = new JTextField();
+        startTimeField.setBounds(300, 210, 300, 30);
+        frame.add(startTimeField);
+        
+      //Description TextField
+        JTextField endTimeField = new JTextField();
+        endTimeField.setBounds(300, 260, 300, 30);
+        frame.add(endTimeField);
 
         // Add Habit Button
         JButton addButton = new JButton("Add Habit");
@@ -121,7 +131,8 @@ public class HabitPage {
     addButton.addActionListener(e -> {
         String habit = habitField.getText().trim();
         String priorityText = priorityField.getText().trim();
-        String hours = hoursField.getText().trim();
+        String start = startTimeField.getText().trim();
+        String end = endTimeField.getText().trim();
 
         if (habit.isEmpty() || priorityText.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Please fill out both fields.", "Missing Info", JOptionPane.WARNING_MESSAGE);
@@ -137,8 +148,11 @@ public class HabitPage {
         }
 
         // Save to database
-        DatabaseController.insertHabit(habit, priority);
-
+        String query = "insert into habit (habit_name, habit_priority, habit_time_start, habit_time_end) values"
+				+ "('"+ habit + "', '" + priority + "', '"+ start + "', '" + end + "');";
+        
+		try { DBInput.input(query); }
+		catch (SQLException error) { System.out.println(error); }
        
         // Display habit on the screen
 /*
@@ -173,7 +187,7 @@ public class HabitPage {
         	cardColor = new Color(186, 85, 211);
         }
         
-        HabitCard card = new HabitCard(String.valueOf(priority), habit, hours, cardColor);
+        HabitCard card = new HabitCard(String.valueOf(priority), habit, start, cardColor);
         
         habitListPanel.add(card);
         
