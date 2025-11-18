@@ -12,13 +12,14 @@ public class DBInput
 {
 	
 	// static method to input queries into connected database
-	public static void input(String inputQuery, Connection con) throws SQLException
+	public static void input(String query) throws SQLException
 	{
 		// attempt statement execution
 		try
 		{
+			// Connect to DB
 			// load and execute input SQL query
-			PreparedStatement stmt = con.prepareStatement(inputQuery);
+			PreparedStatement stmt = DBConnector.connectDB().prepareStatement(query);
 			stmt.executeUpdate();
             
 			// verify successful DB input in console
