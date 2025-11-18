@@ -1,4 +1,5 @@
 11/11/2025 - Sprint 2 Standup 1
+
 Names: Pranay, Amraj, Shahab, Harsh, Thor
 
 1. What did you work on since the last standup?
