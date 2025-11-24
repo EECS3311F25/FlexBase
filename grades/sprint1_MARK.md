@@ -19,18 +19,18 @@
 ## User Stories (Tracked in Trello) (max 12 marks) 
 
 
-  User Stories Total Mark: - / 12
+  User Stories Total Mark: 10 / 12
 
 ---
 ## Tracking on Trello  (max 4 marks) 
 
 
-Tracking on Trello Total Mark: - / 15
+Tracking on Trello Total Mark: 10 / 15
 
 ---
 ## Sprint Completion (Max 10 marks) 
  
-    Your Mark: - /10
+    Your Mark: 10 /10
 
 ---
 ## Sprint Video Demo (Max 12 marks) 
@@ -40,9 +40,9 @@ Tracking on Trello Total Mark: - / 15
 
 ---
 
-** Change your Trello Board to your project. Hard To find!!! send me an email to find your Trello. there is no Trello with your name. I'll change your grade  **
+** The trello board was not organized and trackable.  **
 
 ## Total Mark
 
-27 / 64
+57 / 64
 
