@@ -44,5 +44,5 @@ Tracking on Trello Total Mark: - / 15
 
 ## Total Mark
 
-37 / 64
+27 / 64
 
