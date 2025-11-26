@@ -21,6 +21,7 @@ public class RegisterController
 			if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
 				JOptionPane.showMessageDialog(frame, "Please fill out all fields.", "Missing Info",
 						JOptionPane.WARNING_MESSAGE);
+				validCheck = false;
 				return validCheck;
 			}
 
@@ -28,6 +29,7 @@ public class RegisterController
 			if (!password.equals(confirmPassword)) {
 				JOptionPane.showMessageDialog(frame, "Passwords are not the same!", "Error",
 						JOptionPane.WARNING_MESSAGE);
+				validCheck = false;
 				return validCheck;
 			}
 			
