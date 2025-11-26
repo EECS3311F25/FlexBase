@@ -1,4 +1,5 @@
 ## FlexBase Database Schema
+create schema flexbase_schema;
 
 ## create USER_INFO table to store user information
 create table USER_INFO (
