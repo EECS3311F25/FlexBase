@@ -7,7 +7,8 @@ import View.*;
  */
 public class app {
     public static void main(String[] args) {
-        LoginPage app = new LoginPage();
+        //LoginPage app = new LoginPage();
+    	HabitPage app = new HabitPage();
         app.show();
     }
 }

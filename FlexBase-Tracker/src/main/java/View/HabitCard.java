@@ -14,10 +14,17 @@ import java.awt.*;
 
 class HabitCard extends JPanel {
 	private final Color bgColor;
+	public int habitID;
+	private JLabel nameValue;
+	private JLabel numValue;
+	private JLabel hoursLabel;
 	
-	public HabitCard(String number, String name, String hours, Color bgColor) {
+	public HabitCard(int habitID, String number, String name, String hours, Color bgColor) {
 		this.bgColor = bgColor;
-		
+		this.habitID = habitID;
+		this.nameValue = new JLabel(name);
+		this.hoursLabel = new JLabel(hours);
+		this.numValue = new JLabel(number);
 		
 		//So card stays consistent sized
 		setPreferredSize(new Dimension(550, 80));
@@ -44,7 +51,6 @@ class HabitCard extends JPanel {
 		numTitle.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		numTitle.setForeground(Color.DARK_GRAY);
 		
-		JLabel numValue = new JLabel(number);
 		numValue.setFont(new Font("SansSerif", Font.BOLD,18));
 		numValue.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -67,7 +73,6 @@ class HabitCard extends JPanel {
 		nameTitle.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		nameTitle.setForeground(Color.DARK_GRAY);
 		
-		JLabel nameValue=new JLabel(name);
 		nameValue.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		
 		
@@ -81,7 +86,6 @@ class HabitCard extends JPanel {
 		
 		
 		// HOURS LABEL
-		JLabel hoursLabel = new JLabel(hours);
 		hoursLabel.setFont(new Font("SansSerif", Font.BOLD,18));
 		hoursLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -90,6 +94,33 @@ class HabitCard extends JPanel {
 		add(hoursLabel);
 		
 		add(Box.createHorizontalStrut(10));
+		
+		JButton editBtn = new JButton("Edit");
+		editBtn.addActionListener(e -> {
+			EditDialog dialog = new EditDialog((JFrame) SwingUtilities.getWindowAncestor(this), nameValue.getText(), hoursLabel.getText());
+			dialog.setVisible(true);
+			
+			if (dialog.isDone()) {
+				setName(dialog.getNewName());
+				setHours(dialog.getNewHours());
+			}
+		});
+		add(editBtn);
+		
+	}
+	
+	public void setName(String newName) {
+		nameValue.setText(newName);
+		
+	}
+	
+	public void setHours(String newHours) {
+		hoursLabel.setText(newHours);
+		
+	}
+	
+	public void setNumber(String newNum) {
+		numValue.setText(newNum);
 		
 	}
 	
@@ -114,4 +145,7 @@ class HabitCard extends JPanel {
 			
 			
 		}
-	}
+		
+		
+}
+	

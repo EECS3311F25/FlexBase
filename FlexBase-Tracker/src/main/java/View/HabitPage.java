@@ -135,6 +135,12 @@ public class HabitPage {
             JOptionPane.showMessageDialog(frame, "Priority must be a number.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        int habitID = DatabaseController.insertHabit(habit, priority);
+        
+        if (habitID == -1) {
+        	JOptionPane.showMessageDialog(frame, "Failed to save habit to database", "Database error", JOptionPane.ERROR_MESSAGE);
+        }
 
         // Save to database
         DatabaseController.insertHabit(habit, priority);
@@ -173,7 +179,7 @@ public class HabitPage {
         	cardColor = new Color(186, 85, 211);
         }
         
-        HabitCard card = new HabitCard(String.valueOf(priority), habit, hours, cardColor);
+        HabitCard card = new HabitCard(habitID, String.valueOf(priority), habit, hours, cardColor);
         
         habitListPanel.add(card);
         
