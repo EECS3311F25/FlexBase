@@ -99,7 +99,7 @@ public class LoginPage {
 	        String password = passwordField.getText().trim();
 	        
 	        // call to LoginController class to handle login validation logic
-	        String userID = LoginController.login(frame, loginButton, userName, password);
+	        String userID = LoginController.login(frame, userName, password);
 	        
 	        if(userID != "") {
 	    		frame.dispose();            // close current login window

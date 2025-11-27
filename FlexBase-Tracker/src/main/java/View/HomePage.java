@@ -2,11 +2,9 @@ package View;
 
 import javax.swing.*;
 
-import Model.DBOutput;
+import Controller.HomeController;
 
 import java.awt.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * The {@code LoginPage} class represents the initial screen of the FlexBase Habit Tracker application.
@@ -40,16 +38,8 @@ public class HomePage {
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setLayout(null);
         
-        String usernameQuery = "SELECT USER_NAME FROM user_info WHERE USER_ID = '" + userID + "';";
-        ResultSet user = DBOutput.getData(usernameQuery);
-        String username = "user";
-        
-        try {
-        	if (user != null && user.next()) {
-        		username = user.getString("USER_NAME");
-        	}
-        } catch (SQLException error) { System.out.println(error); }
-        
+        // get username based on currently logged in user using primary key USER_ID
+        String username = HomeController.getUser(userID);
 
         JLabel titleLabel = new JLabel("FlexBase - Habit Tracker");
         titleLabel.setFont(new Font("SansSerif", Font.BOLD, 22));

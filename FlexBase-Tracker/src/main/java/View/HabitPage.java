@@ -1,12 +1,10 @@
 package View;
 
 import javax.swing.*;
-import java.awt.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import Model.DBInput;
-import Model.DBOutput;
+import Controller.HabitController;
+
+import java.awt.*;
 
 /**
  * The {@code HabitPage} class provides a simple graphical interface for users
@@ -42,15 +40,15 @@ public class HabitPage {
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setLayout(null);
         
-        String usernameQuery = "SELECT USER_NAME FROM user_info WHERE USER_ID = '" + userID + "';";
-        ResultSet user = DBOutput.getData(usernameQuery);
-        String username = "user";
         
-        try {
-        	if (user != null && user.next()) {
-        		username = user.getString("USER_NAME");
-        	}
-        } catch (SQLException error) { System.out.println(error); }
+/*      !!! IF USERNAME IS NEEDED ON THIS PAGE IMPORT CONTROLLER.HOMECONTROLLER AND USE THIS!!!
+ * 
+ * 
+*        String username = HomeController.getUser(userID);
+*        
+*        
+*/
+        
         
         //Back button
         JButton backButton = new JButton("Go Back");
@@ -145,26 +143,9 @@ public class HabitPage {
         String priorityText = priorityField.getText().trim();
         String start = startTimeField.getText().trim();
         String end = endTimeField.getText().trim();
-
-        if (habit.isEmpty() || priorityText.isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "Please fill out both fields.", "Missing Info", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        int priority;
-        try {
-            priority = Integer.parseInt(priorityText);
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(frame, "Priority must be a number.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Save to database
-        String query = "insert into habit (habit_name, habit_priority, habit_time_start, habit_time_end) values"
-				+ "('"+ habit + "', '" + priority + "', '"+ start + "', '" + end + "');";
         
-		try { DBInput.input(query); }
-		catch (SQLException error) { System.out.println(error); }
+        // attempt to input habit into DB via controller class
+        int priority = HabitController.inputHabit(frame, userID, habit, priorityText, start, end);
        
         // Display habit on the screen
 /*
@@ -183,31 +164,36 @@ public class HabitPage {
 
         JOptionPane.showMessageDialog(frame, "Habit added successfully!");
 */
-        //                TESTING NEW CARD
-        Color cardColor = new Color(0, 0, 0);
-        //Makes it Light Green for low prio
-        if (priority <= 3) {
-        	cardColor = new Color(152, 251, 152);
-        	
-        }
-        //Makes it Blue for mid prio
-        else if (priority <= 6) {
-        	cardColor = new Color(135, 206, 250);
-        }
-        //Purple for high prio
-        else {
-        	cardColor = new Color(186, 85, 211);
-        }
-        
-        HabitCard card = new HabitCard(String.valueOf(priority), habit, start, cardColor);
-        
-        habitListPanel.add(card);
-        
-        //Spacing
-        habitListPanel.add(Box.createVerticalStrut(8));
-        
-        habitListPanel.revalidate();
-        habitListPanel.repaint();
+       
+       // if habit is successfully entered into DB, display habit on input log
+       if (priority != 0)
+       {
+//         TESTING NEW CARD
+			Color cardColor = new Color(0, 0, 0);
+			// Makes it Light Green for low prio
+			if (priority <= 3) {
+				cardColor = new Color(152, 251, 152);
+
+			}
+			// Makes it Blue for mid prio
+			else if (priority <= 6) {
+				cardColor = new Color(135, 206, 250);
+			}
+			// Purple for high prio
+			else {
+				cardColor = new Color(186, 85, 211);
+			}
+
+			HabitCard card = new HabitCard(String.valueOf(priority), habit, start, cardColor);
+
+			habitListPanel.add(card);
+
+			// Spacing
+			habitListPanel.add(Box.createVerticalStrut(8));
+
+			habitListPanel.revalidate();
+			habitListPanel.repaint();
+       }
     });
 
     }

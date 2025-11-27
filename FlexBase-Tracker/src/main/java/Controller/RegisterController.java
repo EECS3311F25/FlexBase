@@ -7,9 +7,13 @@ import javax.swing.*;
 import Model.DBInput;
 import Model.DBOutput;
 
+// Controller class for the CreateUserPage view 
 public class RegisterController
 {
-	public static String register(JFrame frame, JButton createAccButton, String username, String password, String confirmPassword)
+	
+//	static method takes current window (frame), username, password and confirmPassword parameters
+//	validates user registration info, creates new user account in DB and allows user to enter home page
+	public static String register(JFrame frame, String username, String password, String confirmPassword)
 	{
 			String userID = "";
 			
@@ -55,13 +59,14 @@ public class RegisterController
 							+ "('"+ username + "', '" + password + "');";
 					
 					// input user data in DB
-					try { DBInput.input(query); 
-							String userIDQuery = "SELECT USER_ID FROM USER_INFO WHERE USER_NAME = '" + username + "';";
-							ResultSet user = DBOutput.getData(userIDQuery);
+					try {
+						DBInput.input(query);
+						
+						// get userID to pass into HomePage
+						String userIDQuery = "SELECT USER_ID FROM USER_INFO WHERE USER_NAME = '" + username + "';";
+						ResultSet user = DBOutput.getData(userIDQuery);
 							
-							if (user != null && user.next()) {
-								userID = user.getString(1);
-							}
+						if (user != null && user.next()) userID = user.getString(1);
 					}
 					catch (SQLException error) { System.out.println(error); }
 				}
