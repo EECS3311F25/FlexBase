@@ -1,7 +1,12 @@
 package View;
 
 import javax.swing.*;
+
+import Model.DBOutput;
+
 import java.awt.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * The {@code LoginPage} class represents the initial screen of the FlexBase Habit Tracker application.
@@ -26,20 +31,37 @@ import java.awt.*;
  * This will display the login screen to the user.
  */
 public class HomePage {
-
     private JFrame frame;
-
-    public HomePage() {
+    
+    public HomePage(String userID) {
         frame = new JFrame("FlexBase - Habit Tracker");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setLayout(null);
+        
+        String usernameQuery = "SELECT USER_NAME FROM user_info WHERE USER_ID = '" + userID + "';";
+        ResultSet user = DBOutput.getData(usernameQuery);
+        String username = "user";
+        
+        try {
+        	if (user != null && user.next()) {
+        		username = user.getString("USER_NAME");
+        	}
+        } catch (SQLException error) { System.out.println(error); }
+        
 
         JLabel titleLabel = new JLabel("FlexBase - Habit Tracker");
         titleLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
         titleLabel.setBounds(250, 40, 400, 40);
         frame.add(titleLabel);
+        
+        //Add a welcome message in the top right
+        JLabel welcomeLabel = new JLabel("Welcome " + username);
+        welcomeLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+        welcomeLabel.setBounds(515, 20, 285, 40);
+        frame.add(welcomeLabel);
+
 
         JButton loginButton = new JButton("Enter Habit");
         loginButton.setFont(new Font("SansSerif", Font.PLAIN, 18));
@@ -71,7 +93,7 @@ public class HomePage {
        
         loginButton.addActionListener(e -> {
             frame.dispose();            // close current home window
-            new HabitPage().show();     // open the Habit page
+            new HabitPage(userID).show();     // open the Habit page
         });
         
         logoutButton.addActionListener(e -> {

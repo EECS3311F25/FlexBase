@@ -2,9 +2,11 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import Model.DBInput;
+import Model.DBOutput;
 
 /**
  * The {@code HabitPage} class provides a simple graphical interface for users
@@ -33,12 +35,22 @@ public class HabitPage {
     private JFrame frame;
     private JPanel habitListPanel; // panel to show added habits
 
-    public HabitPage() {
+    public HabitPage(String userID) {
         frame = new JFrame("FlexBase - Add Habit");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setLayout(null);
+        
+        String usernameQuery = "SELECT USER_NAME FROM user_info WHERE USER_ID = '" + userID + "';";
+        ResultSet user = DBOutput.getData(usernameQuery);
+        String username = "user";
+        
+        try {
+        	if (user != null && user.next()) {
+        		username = user.getString("USER_NAME");
+        	}
+        } catch (SQLException error) { System.out.println(error); }
         
         //Back button
         JButton backButton = new JButton("Go Back");
@@ -125,7 +137,7 @@ public class HabitPage {
         
         backButton.addActionListener(e -> {
             frame.dispose();            // close current habit window
-            new HomePage().show();     // open the Home page
+            new HomePage(userID).show();     // open the Home page
         });
     
     addButton.addActionListener(e -> {

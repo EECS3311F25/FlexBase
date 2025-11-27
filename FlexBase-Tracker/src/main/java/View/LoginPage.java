@@ -43,7 +43,7 @@ public class LoginPage {
 		titleLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		titleLabel.setBounds(250, 40, 400, 40);
 		frame.add(titleLabel);
-
+		
 		// Habit Label
 		JLabel userLabel = new JLabel("Username:");
 		userLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
@@ -80,7 +80,7 @@ public class LoginPage {
 		  
         createUserButton.addActionListener(e -> {
             frame.dispose();            // close current login window
-            new CreateUserPage().show();     // open the Habit page
+            new CreateUserPage().show();     // open the create user page
         });
 
 		/*
@@ -97,13 +97,13 @@ public class LoginPage {
         loginButton.addActionListener(e -> {
 	    	String userName = userField.getText().trim();
 	        String password = passwordField.getText().trim();
-	     
-	        // call to LoginController class to handle login validation logic
-	        boolean userExists = LoginController.login(frame, loginButton, userName, password);
 	        
-	        if(userExists) {
+	        // call to LoginController class to handle login validation logic
+	        String userID = LoginController.login(frame, loginButton, userName, password);
+	        
+	        if(userID != "") {
 	    		frame.dispose();            // close current login window
-	            new HomePage().show();     // open the Home page
+	    		new HomePage(userID).show();     // open the Home page 
 	    	}
 	    	else {
 	    		JOptionPane.showMessageDialog(frame, "No user with entered log-in information");

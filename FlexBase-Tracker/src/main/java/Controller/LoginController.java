@@ -15,12 +15,11 @@ import Model.DBOutput;
  */
 public class LoginController
 {
-	
 	// static method takes current window (frame), button that calls this method, user and pass parameters
 	// validates user login info and allows user to enter home page
-	public static boolean login(JFrame frame, JButton loginButton, String username, String password)
+	public static String login(JFrame frame, JButton loginButton, String username, String password)
 	{
-	        boolean userExists = false;
+	        String userID = "";
 	    	
 	        // check DB for user info
 	        ResultSet userInfo = DBOutput.getData("select * from user_info");
@@ -31,7 +30,7 @@ public class LoginController
 	        	while(userInfo.next())
 	            {
 			    	// check if user exists in DB					// if user exists, check if password belongs to same user
-	        		if (userInfo.getString(2).equals(username)) if (userInfo.getString(3).equals(password)) userExists = true;
+	        		if (userInfo.getString(2).equals(username)) if (userInfo.getString(3).equals(password)) userID = userInfo.getString(1);
 			    }
 	        }
 	        catch (SQLException error)
@@ -39,6 +38,6 @@ public class LoginController
 	        	System.out.println("SQL ERROR!");
 	        }
 		
-		return userExists;
+		return userID;
 	}
 }

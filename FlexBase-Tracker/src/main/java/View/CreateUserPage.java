@@ -90,17 +90,17 @@ public class CreateUserPage {
 			String confirmPassword = new String(confirmPassInput.getPassword());
 			
 			// call to RegisterController class to handle create-user logic
-			boolean validCheck = RegisterController.register(frame, createAccButton, username, password, confirmPassword);
+			String userID = RegisterController.register(frame, createAccButton, username, password, confirmPassword);
 			
 			// if user doesn't already exist in database and inputs are valid
-			if (validCheck)
+			if (userID != "")
 			{
 				// let the user know their account's been created successfully
 				JOptionPane.showMessageDialog(frame, "Account has been created successfully.");
 				// go to login page
 				// close the current window
 				frame.dispose();
-				new HomePage().show();
+				new HomePage(userID).show();
 			}
 			
 		});
