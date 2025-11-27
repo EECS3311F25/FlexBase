@@ -90,7 +90,7 @@ public class CreateUserPage {
 			String confirmPassword = new String(confirmPassInput.getPassword());
 			
 			// call to RegisterController class to handle create-user logic
-			String userID = RegisterController.register(frame, createAccButton, username, password, confirmPassword);
+			String userID = RegisterController.register(frame, username, password, confirmPassword);
 			
 			// if user doesn't already exist in database and inputs are valid
 			if (userID != "")

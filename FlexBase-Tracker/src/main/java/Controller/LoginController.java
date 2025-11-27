@@ -7,17 +7,12 @@ import javax.swing.*;
 
 import Model.DBOutput;
 
-/**
- * This is what will happen when the user will click the login button
- * basically the reactions to button will be captured here.
- *
- * for example: there has to be validation check - when i under my username and password.
- */
+// Controller class for LoginPage view
 public class LoginController
 {
-	// static method takes current window (frame), button that calls this method, user and pass parameters
-	// validates user login info and allows user to enter home page
-	public static String login(JFrame frame, JButton loginButton, String username, String password)
+	// static method takes current window (frame), and username and password parameters
+	// validates user login info with DB and allows user to enter home page
+	public static String login(JFrame frame, String username, String password)
 	{
 	        String userID = "";
 	    	
