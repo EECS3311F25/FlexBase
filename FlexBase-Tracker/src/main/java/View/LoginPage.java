@@ -38,6 +38,7 @@ public class LoginPage {
 		frame.setSize(800, 600);
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
 
 		JLabel titleLabel = new JLabel("FlexBase - Habit Tracker");
 		titleLabel.setFont(new Font("SansSerif", Font.BOLD, 22));

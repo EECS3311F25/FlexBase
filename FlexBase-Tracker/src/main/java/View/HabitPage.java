@@ -39,6 +39,7 @@ public class HabitPage {
         frame.setSize(800, 600);
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setLayout(null);
+        frame.setLocationRelativeTo(null);
         
         
 /*      !!! IF USERNAME IS NEEDED ON THIS PAGE IMPORT CONTROLLER.HOMECONTROLLER AND USE THIS!!!

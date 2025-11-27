@@ -20,6 +20,7 @@ public class CreateUserPage {
 		frame.setSize(800, 600);
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
 
 		// title label
 		JLabel titleLabel = new JLabel("Create a User");

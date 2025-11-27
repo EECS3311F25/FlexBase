@@ -37,6 +37,7 @@ public class HomePage {
         frame.setSize(800, 600);
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setLayout(null);
+        frame.setLocationRelativeTo(null);
         
         // get username based on currently logged in user using primary key USER_ID
         String username = HomeController.getUser(userID);
