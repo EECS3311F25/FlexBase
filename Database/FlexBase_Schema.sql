@@ -1,5 +1,5 @@
 ## FlexBase Database Schema
-create schema flexbase_schema;
+# create schema flexbase_schema;
 
 ## create USER_INFO table to store user information
 create table USER_INFO (
@@ -11,7 +11,7 @@ USER_PASS char(50) not null
 ## create HABIT table to store all attributes of user's habits
 create table HABIT (
  HABIT_ID int not null auto_increment primary key,
- #USER_ID int not null,
+ USER_ID int not null,
  HABIT_NAME char(50) not null,
  HABIT_PRIORITY int not null,
  HABIT_TIME_START time,
@@ -33,7 +33,7 @@ create table HABIT (
  
  
  
- ## commented test code to verify table behavior
+## commented test code to verify table behavior
 
 ## table functionality/content testing
     #show tables from flexbase_schema;

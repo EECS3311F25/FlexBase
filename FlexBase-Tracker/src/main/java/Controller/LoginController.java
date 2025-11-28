@@ -7,20 +7,14 @@ import javax.swing.*;
 
 import Model.DBOutput;
 
-/**
- * This is what will happen when the user will click the login button
- * basically the reactions to button will be captured here.
- *
- * for example: there has to be validation check - when i under my username and password.
- */
+// Controller class for LoginPage view
 public class LoginController
 {
-	
-	// static method takes current window (frame), button that calls this method, user and pass parameters
-	// validates user login info and allows user to enter home page
-	public static boolean login(JFrame frame, JButton loginButton, String username, String password)
+	// static method takes current window (frame), and username and password parameters
+	// validates user login info with DB and allows user to enter home page
+	public static String login(JFrame frame, String username, String password)
 	{
-	        boolean userExists = false;
+	        String userID = "";
 	    	
 	        // check DB for user info
 	        ResultSet userInfo = DBOutput.getData("select * from user_info");
@@ -31,7 +25,7 @@ public class LoginController
 	        	while(userInfo.next())
 	            {
 			    	// check if user exists in DB					// if user exists, check if password belongs to same user
-	        		if (userInfo.getString(2).equals(username)) if (userInfo.getString(3).equals(password)) userExists = true;
+	        		if (userInfo.getString(2).equals(username)) if (userInfo.getString(3).equals(password)) userID = userInfo.getString(1);
 			    }
 	        }
 	        catch (SQLException error)
@@ -39,6 +33,6 @@ public class LoginController
 	        	System.out.println("SQL ERROR!");
 	        }
 		
-		return userExists;
+		return userID;
 	}
 }

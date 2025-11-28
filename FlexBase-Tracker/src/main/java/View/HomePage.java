@@ -1,6 +1,9 @@
 package View;
 
 import javax.swing.*;
+
+import Controller.HomeController;
+
 import java.awt.*;
 
 /**
@@ -26,20 +29,30 @@ import java.awt.*;
  * This will display the login screen to the user.
  */
 public class HomePage {
-
     private JFrame frame;
-
-    public HomePage() {
+    
+    public HomePage(String userID) {
         frame = new JFrame("FlexBase - Habit Tracker");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setLayout(null);
+        frame.setLocationRelativeTo(null);
+        
+        // get username based on currently logged in user using primary key USER_ID
+        String username = HomeController.getUser(userID);
 
         JLabel titleLabel = new JLabel("FlexBase - Habit Tracker");
         titleLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
         titleLabel.setBounds(250, 40, 400, 40);
         frame.add(titleLabel);
+        
+        //Add a welcome message in the top right
+        JLabel welcomeLabel = new JLabel("Welcome " + username);
+        welcomeLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+        welcomeLabel.setBounds(515, 20, 285, 40);
+        frame.add(welcomeLabel);
+
 
         JButton loginButton = new JButton("Enter Habit");
         loginButton.setFont(new Font("SansSerif", Font.PLAIN, 18));
@@ -71,7 +84,7 @@ public class HomePage {
        
         loginButton.addActionListener(e -> {
             frame.dispose();            // close current home window
-            new HabitPage().show();     // open the Habit page
+            new HabitPage(userID).show();     // open the Habit page
         });
         
         logoutButton.addActionListener(e -> {
