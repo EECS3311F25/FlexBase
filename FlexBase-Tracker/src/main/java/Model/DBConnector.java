@@ -15,7 +15,7 @@ public class DBConnector
 	// declare and initialize local database connection parameters
 	private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/flexbase_schema";
     private static final String DB_USER = "root";
-    private static final String DB_PASS = "Root1234";
+    private static final String DB_PASS = "JarmaSQL13@!";
     
     // static method to connect to DB on local server and return the connection
     
