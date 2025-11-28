@@ -48,7 +48,7 @@ public class DBConnector
         }
     	
     	// if connection fails and variable con is not updated, return error
-    	if (con.equals(null)) throw new SQLException("Failed to connect to database.");
+    	if (con == null) throw new SQLException("Failed to connect to database.");
     	
     	return con;
     }
