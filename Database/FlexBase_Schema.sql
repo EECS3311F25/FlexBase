@@ -1,4 +1,5 @@
 ## FlexBase Database Schema
+
 create schema flexbase_schema;
 
 ## create USER_INFO table to store user information
@@ -11,12 +12,12 @@ USER_PASS char(50) not null
 ## create HABIT table to store all attributes of user's habits
 create table HABIT (
  HABIT_ID int not null auto_increment primary key,
- #USER_ID int not null,
+ USER_ID int not null,
  HABIT_NAME char(50) not null,
  HABIT_PRIORITY int not null,
  HABIT_TIME_START time,
- HABIT_TIME_END time
- #foreign key (USER_ID) references USER_INFO(USER_ID)
+ HABIT_TIME_END time,
+foreign key (USER_ID) references USER_INFO(USER_ID)
  );
  
  ## create OPTIMIZED_HABIT table to store optimized habits and their attributes
