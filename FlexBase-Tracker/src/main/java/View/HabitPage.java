@@ -3,30 +3,9 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
+import java.util.List;
 
 import Model.DBInput;
-
-/**
- * The {@code HabitPage} class provides a simple graphical interface for users
- * to add and manage personal habits along with their priority levels.
- * <p>
- * It allows users to:
- * <ul>
- *     <li>Enter a habit name and its priority.</li>
- *     <li>Add the habit to a scrollable list displayed at the bottom of the window.</li>
- * </ul>
- * 
- * The UI is built using Swing components and follows a clean, minimal layout.
- * </p>
- * 
- * Example:
- * <pre>
- *     HabitPage page = new HabitPage();
- *     page.show();
- * </pre>
- * 
- * This will launch the habit tracking window.
- */
 
 public class HabitPage {
 
@@ -40,12 +19,19 @@ public class HabitPage {
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setLayout(null);
         
-        //Back button
+        // Back button
         JButton backButton = new JButton("Go Back");
         backButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
         backButton.setFocusPainted(false);
         backButton.setBounds(10, 10, 100, 35);
         frame.add(backButton);
+
+        // Calendar Button
+        JButton calendarButton = new JButton("Open Calendar");
+        calendarButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        calendarButton.setFocusPainted(false);
+        calendarButton.setBounds(640, 10, 140, 35);
+        frame.add(calendarButton);
 
         // Title Label
         JLabel titleLabel = new JLabel("Add a New Habit");
@@ -65,34 +51,30 @@ public class HabitPage {
         priorityLabel.setBounds(200, 160, 100, 30);
         frame.add(priorityLabel);
        
-        
-        //Description Label
-        JLabel startTimeLabel = new JLabel("Start Time:");
+        // Start and End time Labels
+        JLabel startTimeLabel = new JLabel("Start Time (hour):");
         startTimeLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-        startTimeLabel.setBounds(200, 210, 120, 30);
+        startTimeLabel.setBounds(150, 210, 150, 30);
         frame.add(startTimeLabel);
         
-        JLabel endTimeLabel = new JLabel("End Time:");
+        JLabel endTimeLabel = new JLabel("End Time (hour):");
         endTimeLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-        endTimeLabel.setBounds(200, 260, 120, 30);
+        endTimeLabel.setBounds(150, 260, 150, 30);
         frame.add(endTimeLabel);
         
-      //Habit TextField
+        // Text Fields
         JTextField habitField = new JTextField();
         habitField.setBounds(300, 110, 300, 30);
         frame.add(habitField);
         
-      //Priority TextField
         JTextField priorityField = new JTextField();
         priorityField.setBounds(300, 160, 300, 30);
         frame.add(priorityField);
         
-      //Description TextField
         JTextField startTimeField = new JTextField();
         startTimeField.setBounds(300, 210, 300, 30);
         frame.add(startTimeField);
         
-      //Description TextField
         JTextField endTimeField = new JTextField();
         endTimeField.setBounds(300, 260, 300, 30);
         frame.add(endTimeField);
@@ -104,16 +86,7 @@ public class HabitPage {
         addButton.setBounds(340, 300, 120, 40);
         frame.add(addButton);
 
-       // work in progress
-//        ImageIcon habitIcon = new ImageIcon(HabitPage.class.getResource("/images/Priorities_To_Do_List.png"));
-//        Image img = habitIcon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-//        habitIcon = new ImageIcon(img);
-//
-//        JLabel imageLabel = new JLabel(habitIcon);
-//        imageLabel.setBounds(620, 160, 150, 150);
-//        frame.add(imageLabel);
-
-        
+        // Habit list panel
         habitListPanel = new JPanel();
         habitListPanel.setLayout(new BoxLayout(habitListPanel, BoxLayout.Y_AXIS));
         habitListPanel.setBackground(Color.WHITE);
@@ -123,83 +96,95 @@ public class HabitPage {
         scrollPane.setBorder(BorderFactory.createTitledBorder("Your Habits"));
         frame.add(scrollPane);
         
+        // Go Back button action
         backButton.addActionListener(e -> {
-            frame.dispose();            // close current habit window
-            new HomePage().show();     // open the Home page
+            frame.dispose();
+            new HomePage().show(); // your existing homepage
         });
-    
-    addButton.addActionListener(e -> {
-        String habit = habitField.getText().trim();
-        String priorityText = priorityField.getText().trim();
-        String start = startTimeField.getText().trim();
-        String end = endTimeField.getText().trim();
 
-        if (habit.isEmpty() || priorityText.isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "Please fill out both fields.", "Missing Info", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+        // ✅ Calendar Button Action (loads from DB)
+        calendarButton.addActionListener(e -> {
+            frame.dispose();
+            // Load habits directly from the database
+            List<WeeklyPlanner.Habit> habits = WeeklyPlanner.loadHabitsFromDB();
+            SwingUtilities.invokeLater(() -> new WeeklyPlanner(habits));
+        });
 
-        int priority;
-        try {
-            priority = Integer.parseInt(priorityText);
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(frame, "Priority must be a number.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        // ✅ Add Habit button logic (now stores proper HH:MM:SS format)
+        addButton.addActionListener(e -> {
+            String habit = habitField.getText().trim();
+            String priorityText = priorityField.getText().trim();
+            String start = startTimeField.getText().trim();
+            String end = endTimeField.getText().trim();
 
-        // Save to database
-        String query = "insert into habit (habit_name, habit_priority, habit_time_start, habit_time_end) values"
-				+ "('"+ habit + "', '" + priority + "', '"+ start + "', '" + end + "');";
-        
-		try { DBInput.input(query); }
-		catch (SQLException error) { System.out.println(error); }
-       
-        // Display habit on the screen
-/*
-        JPanel itemPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        itemPanel.setBackground(new Color(240, 240, 240));
-        itemPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
-        itemPanel.add(new JLabel("Habit: " + habit + "    Priority: " + priority));
+            if (habit.isEmpty() || priorityText.isEmpty()) {
+                JOptionPane.showMessageDialog(frame, "Please fill out both fields.", "Missing Info", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
-        habitListPanel.add(itemPanel);
-        habitListPanel.revalidate();
-        habitListPanel.repaint();
+            int priority;
+            try {
+                priority = Integer.parseInt(priorityText);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(frame, "Priority must be a number.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        // Clear input fields
-        habitField.setText("");
-        priorityField.setText("");
+            // Parse numeric hours
+            int startHour = parseHour(start);
+            int endHour = parseHour(end);
 
-        JOptionPane.showMessageDialog(frame, "Habit added successfully!");
-*/
-        //                TESTING NEW CARD
-        Color cardColor = new Color(0, 0, 0);
-        //Makes it Light Green for low prio
-        if (priority <= 3) {
-        	cardColor = new Color(152, 251, 152);
-        	
-        }
-        //Makes it Blue for mid prio
-        else if (priority <= 6) {
-        	cardColor = new Color(135, 206, 250);
-        }
-        //Purple for high prio
-        else {
-        	cardColor = new Color(186, 85, 211);
-        }
-        
-        HabitCard card = new HabitCard(String.valueOf(priority), habit, start, cardColor);
-        
-        habitListPanel.add(card);
-        
-        //Spacing
-        habitListPanel.add(Box.createVerticalStrut(8));
-        
-        habitListPanel.revalidate();
-        habitListPanel.repaint();
-    });
+            // ✅ Format proper SQL TIME strings
+            String formattedStart = String.format("%02d:00:00", startHour);
+            String formattedEnd = String.format("%02d:00:00", endHour);
 
+            // Save to DB
+            String query = "INSERT INTO habit (habit_name, habit_priority, habit_time_start, habit_time_end) VALUES "
+                    + "('" + habit + "', '" + priority + "', '" + formattedStart + "', '" + formattedEnd + "');";
+            try {
+                DBInput.input(query);
+                System.out.println("Inserted habit: " + habit + " (" + formattedStart + " - " + formattedEnd + ")");
+            } catch (SQLException error) {
+                System.out.println(error);
+            }
+
+            // Color-coded card for display
+            Color cardColor;
+            if (priority <= 3) cardColor = new Color(152, 251, 152);
+            else if (priority <= 6) cardColor = new Color(135, 206, 250);
+            else cardColor = new Color(186, 85, 211);
+
+            HabitCard card = new HabitCard(String.valueOf(priority), habit, formattedStart, cardColor);
+            habitListPanel.add(card);
+            habitListPanel.add(Box.createVerticalStrut(8));
+            habitListPanel.revalidate();
+            habitListPanel.repaint();
+
+            // Clear inputs
+            habitField.setText("");
+            priorityField.setText("");
+            startTimeField.setText("");
+            endTimeField.setText("");
+
+            JOptionPane.showMessageDialog(frame, "Habit added successfully!");
+        });
     }
-    
+
+    /**
+     * Converts a time string like "8" or "08:00" into an integer hour.
+     */
+    private int parseHour(String time) {
+        if (time == null || time.isEmpty()) return 0;
+        try {
+            if (time.contains(":")) {
+                return Integer.parseInt(time.split(":")[0]);
+            }
+            return Integer.parseInt(time);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
     public void show() {
         frame.setVisible(true);
     }
