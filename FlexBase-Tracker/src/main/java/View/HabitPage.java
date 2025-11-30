@@ -4,10 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import Model.DBInput;
 import Model.DBOutput;
 import Model.UserSession;
+import Controller.HabitController;
+
+
 
 /**
  * The {@code HabitPage} class provides a simple graphical interface for users
@@ -153,15 +155,13 @@ public class HabitPage {
 			}
 
 			// Save to database
-			String query = "INSERT INTO HABIT (USER_ID, HABIT_NAME, HABIT_PRIORITY, HABIT_TIME_START, HABIT_TIME_END) VALUES ("
-					+ UserSession.getID() + ", '" + habit + "', " + priority + ", '" + start + "', '" + end + "');";
-
 			try {
-				DBInput.input(query);
+			    HabitController.addHabit(habit, priority, start, end);
 			} catch (SQLException error) {
-				System.out.println(error);
+			    System.out.println("Database error: " + error.getMessage());
 			}
 
+			
 			// Display habit on the screen
 			/*
 			 * JPanel itemPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -215,11 +215,14 @@ public class HabitPage {
 	}
 
 	private void loadHabit() {
-    	int currID = UserSession.getID();
-    	String query = "SELECT * FROM HABIT WHERE USER_ID = " + currID + ";";
-    	
+    
     	try {
-    		ResultSet us = DBOutput.getData(query);
+    		ResultSet us = HabitController.getHabits();
+    		
+    		if (us == null) {
+    			System.out.println("HabitController.getHabits() returned null, please view your DB or query.");
+    			return;
+    		}
     		while (us.next()) {
     			String habitTitle = us.getString("HABIT_NAME");
     			int priority = us.getInt("HABIT_PRIORITY");
