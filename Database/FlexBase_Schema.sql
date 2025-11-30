@@ -15,8 +15,8 @@ create table HABIT (
  HABIT_NAME char(50) not null,
  HABIT_PRIORITY int not null,
  HABIT_TIME_START time,
- HABIT_TIME_END time
- #foreign key (USER_ID) references USER_INFO(USER_ID)
+ HABIT_TIME_END time,
+ foreign key (USER_ID) references USER_INFO(USER_ID)
  );
  
  ## create OPTIMIZED_HABIT table to store optimized habits and their attributes
