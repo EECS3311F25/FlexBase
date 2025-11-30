@@ -2,6 +2,9 @@ package Controller;
 
 import java.sql.SQLException;
 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 
 import Model.*;
@@ -36,5 +39,37 @@ public class HabitController
 		
 		return priority;
 	}
+	
+	
+	// static method to fetch all habits for a given userID
+    public static List<String> outputHabits(String userID) {
+        List<String> habits = new ArrayList<>();
+        String query = "SELECT habit_name, habit_priority, habit_time_start, habit_time_end FROM habit WHERE user_id = '" + userID + "';";
+
+        try (Connection conn = DBConnector.connectDB();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                String habitName = rs.getString("habit_name");
+                int priority = rs.getInt("habit_priority");
+                String start = rs.getString("habit_time_start");
+                String end = rs.getString("habit_time_end");
+
+                String habitInfo = "Habit: " + habitName + " | Priority: " + priority +
+                                   " | Start: " + start + " | End: " + end;
+                habits.add(habitInfo);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error retrieving habits from database.", "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return habits;
+    }
+	
+	
+	
 	
 }
