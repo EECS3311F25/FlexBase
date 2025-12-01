@@ -4,10 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import Model.DBInput;
-import Model.DBOutput;
-import Model.UserSession;
 import Controller.HabitController;
+import Model.UserSession;
 
 
 
@@ -156,8 +154,8 @@ public class HabitPage {
 
 			// Save to database
 			try {
-			    HabitController.addHabit(habit, priority, start, end);
-			} catch (SQLException error) {
+			    HabitController.inputHabit(frame, String.valueOf(UserSession.getID()), habit, String.valueOf(priority), start, end);
+			} catch (Exception error) {
 			    System.out.println("Database error: " + error.getMessage());
 			}
 
@@ -201,6 +199,11 @@ public class HabitPage {
 
 			habitListPanel.revalidate();
 			habitListPanel.repaint();
+			habitField.setText("");
+			priorityField.setText("");
+			startTimeField.setText("");
+			endTimeField.setText("");
+
 		});
 
 		loadHabit();
