@@ -17,6 +17,8 @@ public class HabitController
 	public static int inputHabit(JFrame frame, String userID, String habit, String priorityText, String start, String end)
 	{
 		int priority = 0;
+		String updatedStart = changeTimeForm(start);
+		String updatedEnd = changeTimeForm(end);
 		
 		if (habit.isEmpty() || priorityText.isEmpty() || start.isEmpty() || end.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Please fill out all fields.", "Missing Info", JOptionPane.WARNING_MESSAGE);
@@ -32,7 +34,7 @@ public class HabitController
 
         // Save to database
         String query = "insert into habit (user_id, habit_name, habit_priority, habit_time_start, habit_time_end) values"
-				+ "('" + userID + "', '"+ habit + "', '" + priority + "', '"+ start + "', '" + end + "');";
+				+ "('" + userID + "', '"+ habit + "', '" + priority + "', '"+ updatedStart + "', '" + updatedEnd + "');";
         
 		try { DBInput.input(query); }
 		catch (SQLException error) { System.out.println(error); }
@@ -40,6 +42,45 @@ public class HabitController
 		return priority;
 	}
 	
+	private static String changeTimeForm(String t) {
+		boolean numeric = false;
+		//empty time
+		if (t == null) return "00:00:00";
+		
+		t = t.trim();
+		
+		//in case user enters it with that format already
+		if (t.contains(":")) {
+			return t;
+		}
+		//checks if its just a normal number
+		numeric = true;
+		for (int i = 0; i <t.length(); i++) {
+			char c = t.charAt(i);
+			if (c<'0' || c > '9') {
+				numeric = false;
+				break;
+			}
+		}
+		//if it isnt a normal number either, return 0
+		if(!numeric) {
+			return "00:00:00";
+			
+		}
+		//converts hours if everything else checked before is good
+		int hour = 0;
+		for(int i = 0; i < t.length();i++) {
+			hour = hour * 10 + (t.charAt(i) - '0');
+		}
+		//if hour is too small or too large
+		if(hour < 0 || hour >23) {
+			return "00:00:00";
+		}
+		//converts to usable format for database
+		//checks if hour is smaller or larger than 10 for the sake of adding a 0 before
+		String hourString = (hour < 10 ? "0" : "") + hour;
+		return hourString + ":00:00";
+	}
 	
 	// static method to fetch all habits for a given userID
     public static List<String> outputHabits(String userID) {
