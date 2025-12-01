@@ -109,6 +109,22 @@ public class HabitController
 
         return habits;
     }
+    
+    public static int getHourasInt(String timeStr) {
+    	
+    	if(timeStr == null|| timeStr.isEmpty()) {
+    		return 0;
+    	}
+        try {
+            String[] parts = timeStr.split(":");
+            if (parts.length == 3) {
+                return Integer.parseInt(parts[0]); // use hour
+            }
+        } catch (Exception e) {
+            //if the parse fails
+        }
+        return 0;
+    }
 	
 	
 	

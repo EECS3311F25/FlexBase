@@ -85,8 +85,10 @@ class HabitCard extends JPanel {
     private void buildCompactCard(String number, String name, String hoursText) {
 
         setOpaque(false);
+        
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-
+        
+        //height and the padding
         int height = 32;
         int vPad = 3;
         int hPad = 7;
@@ -100,6 +102,7 @@ class HabitCard extends JPanel {
         Font nameFont = new Font("SansSerif", Font.PLAIN, 12);
         Font hoursFont = new Font("SansSerif", Font.PLAIN, 10);
 
+        
         JPanel numPanel = new JPanel();
         numPanel.setOpaque(false);
         numPanel.setLayout(new BoxLayout(numPanel, BoxLayout.Y_AXIS));
@@ -112,6 +115,7 @@ class HabitCard extends JPanel {
         JLabel numberLabel = new JLabel(number);
         numberLabel.setFont(numFont);
 
+        
         numPanel.add(pLabel);
         numPanel.add(numberLabel);
         add(numPanel);
@@ -126,6 +130,7 @@ class HabitCard extends JPanel {
         nameLabel.setFont(nameFont);
         namePanel.add(nameLabel);
 
+        
         add(namePanel);
         add(Box.createHorizontalGlue());
 
@@ -141,16 +146,17 @@ class HabitCard extends JPanel {
 
     //to calcuate time range
     private String makeRangeText(int start, int end) {
+    	
+    	//defaults 2 hours past start time without going past 24th hour
         if (end <= start) {
             end = start + 2;
             if (end > 24) end = 24;
         }
 
         int duration = end - start;
-        String s = (start < 10 ? "0" : "") + start;
-        String e = (end < 10 ? "0" : "") + end;
+        
 
-        return s + "–" + e + " (" + duration + "h)";
+        return duration + "hrs";
     }
 
 
@@ -161,6 +167,7 @@ class HabitCard extends JPanel {
 
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+        
         int radius;
         if (compactMode) {
             radius = 10;
@@ -168,6 +175,7 @@ class HabitCard extends JPanel {
             radius = 20;
         }
 
+        
         g2.setColor(bgColor);
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
         g2.dispose();

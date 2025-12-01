@@ -92,7 +92,8 @@ public class WeeklyPlanner extends JFrame {
             dayPanels[i] = dayPanel;
             weekPanel.add(scrollPane);
         }
-
+        
+        
         // Load all habits for this user
         List<String> userHabitsStr = HabitController.outputHabits(userID);
         for (String s : userHabitsStr) {
