@@ -229,8 +229,27 @@ public class HabitPage {
              			else {
              				cardColor = new Color(186, 85, 211);
              			}
-             
              			HabitCard card = new HabitCard(priority, name, startInt, endInt, cardColor, false);
+             			String oldName = name;
+             			int oldPriority = priority;
+             			String oldStart = startStr;
+             			String oldEnd = endStr;
+             			
+             			card.addMouseListener(new java.awt.event.MouseAdapter() {
+             				public void mouseClicked(java.awt.event.MouseEvent e) {
+             					EditDialog dialog = new EditDialog(frame, oldName, String.valueOf(oldPriority), oldStart, oldEnd);
+             					dialog.setVisible(true);
+             					if(dialog.isDone()) {
+             						String newName = dialog.getNewName();
+             						String newPrio = dialog.getNewPriority();
+             						String newStart = dialog.getNewStart();
+             						String newEnd = dialog.getNewEnd();
+             					}
+             				}
+             			});
+             			
+             
+             			
 
              			habitListPanel.add(card);
 
