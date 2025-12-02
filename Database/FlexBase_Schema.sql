@@ -25,7 +25,8 @@ create table HABIT (
  USER_ID int not null,
  O_HABIT_NAME char(50) not null,
  O_HABIT_PRIORITY int not null,
- O_HABIT_HOURS int not null,
+ O_HABIT_TIME_START time,
+ O_HABIT_TIME_END time,
  foreign key (O_HABIT_ID) references HABIT(HABIT_ID),
  foreign key (USER_ID) references USER_INFO(USER_ID)
  );

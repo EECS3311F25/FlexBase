@@ -96,21 +96,21 @@ public class HomePage {
         
         // TESTING (copy this code wherever 'optimize button' is needed)
         
-//        //Optimize button
-//        JButton optimizeButton = new JButton("Optimize");
-//        optimizeButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
-//        optimizeButton.setFocusPainted(false);
-//        optimizeButton.setBounds(200, 300, 150, 50);
-//        frame.add(optimizeButton);
-//        
-//        optimizeButton.addActionListener(e -> {
-//            try {
-//				Optimizer.Optimize(userID);
-//			} catch (SQLException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}     // open the Habit page
-//        });
+        //Optimize button
+        JButton optimizeButton = new JButton("Optimize");
+        optimizeButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        optimizeButton.setFocusPainted(false);
+        optimizeButton.setBounds(200, 300, 150, 50);
+        frame.add(optimizeButton);
+        
+        optimizeButton.addActionListener(e -> {
+            try {
+				Optimizer.Optimize(userID);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}     // open the Habit page
+        });
         
         // END OF TESTING
     }
