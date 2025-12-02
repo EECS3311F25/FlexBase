@@ -125,6 +125,13 @@ public class HabitController
         }
         return 0;
     }
+    
+    public static boolean updateHabit(JFrame frame, String userID, String oldName, String oldStart, String oldEnd, String newName, String newPriority, String newStart, String newEnd) {
+    	if(newName.isEmpty() || newPriority.isEmpty()|| newStart.isEmpty()||newEnd.isEmpty()) {
+    		JOptionPane.showMessageDialog(frame, "Please enter information for all data", "Fill out Info", JOptionPane.WARNING_MESSAGE);
+    	}
+    	return false;
+    }
 	
 	
 	
