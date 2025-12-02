@@ -25,7 +25,7 @@ public class LoginController
 	        	while(userInfo.next())
 	            {
 			    	// check if user exists in DB					// if user exists, check if password belongs to same user
-	        		if (userInfo.getString(2).equals(username)) if (userInfo.getString(3).equals(password)) userID = userInfo.getString(1);
+	        		if (userInfo.getString("user_name").equals(username)) if (userInfo.getString("user_pass").equals(password)) userID = userInfo.getString("user_id");
 			    }
 	        }
 	        catch (SQLException error)

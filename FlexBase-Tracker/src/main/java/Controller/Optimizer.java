@@ -49,10 +49,10 @@ public class Optimizer
 		// fill arrays with user's habit details in order to maintain parallel array values
 		while (rs.next())
 		{
-			habitName[index] = rs.getString(3);
-			habitID[index] = rs.getInt(1);
+			habitName[index] = rs.getString("habit_name");
+			habitID[index] = rs.getInt("habit_id");
 			
-			priority[index] = rs.getInt(4);
+			priority[index] = rs.getInt("habit_priority");
 			weight += priority[index];
 			
 //			totalTime += parseHour(rs.getTime(6).toString()) - parseHour(rs.getTime(5).toString());

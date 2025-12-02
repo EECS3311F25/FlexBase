@@ -43,7 +43,7 @@ public class RegisterController
 				while (users.next())
 				{	
 					// if user already exists in DB, ask user to make new username
-					if (users.getString(2).equals(username))
+					if (users.getString("user_name").equals(username))
 					{
 						JOptionPane.showMessageDialog(frame, "User already exists!");
 						userAlreadyExists = true;
@@ -66,7 +66,7 @@ public class RegisterController
 						String userIDQuery = "SELECT USER_ID FROM USER_INFO WHERE USER_NAME = '" + username + "';";
 						ResultSet user = DBOutput.getData(userIDQuery);
 							
-						if (user != null && user.next()) userID = user.getString(1);
+						if (user != null && user.next()) userID = user.getString("user_id");
 					}
 					catch (SQLException error) { System.out.println(error); }
 				}
