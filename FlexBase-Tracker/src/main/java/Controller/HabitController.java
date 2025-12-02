@@ -136,13 +136,21 @@ public class HabitController
     	
     	String updateStart = changeTimeForm(newStart);
     	String updatedEnd = changeTimeForm(newEnd);
-    	
+    	//long query to update habit
     	String query =
     			"UPDATE habit SET " +
     			"HABIT_NAME = '" + newName + "', " + "HABIT_PRIORITY = '" + newPriority + "', " + "HABIT_NAME = '" + newStart + "', " + "HABIT_NAME = '" + newEnd + "', " + "WHERE user_id = '" + userID + "' " + "AND habit_name = '" + oldName + "' " + "AND HABIT_START_TIME = '" + oldStart + "' " + "AND HABIT_END_TIME = '" + oldEnd + "';";
     	
+    	//Checks if it can actually put the query in, if not pops error dialog
+    	try {
+    		DBInput.input(query);
+    		return true;
+    	} catch (SQLException error) {
+    		error.printStackTrace();
+    		JOptionPane.showMessageDialog(frame,  "Could not update the habit in database", "database error", JOptionPane.ERROR_MESSAGE);
+    		return false;
+    	}
     	
-    	return false;
     }
 	
 	
