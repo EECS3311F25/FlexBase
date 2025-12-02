@@ -67,7 +67,13 @@ public class Optimizer
 		
 		int current = 0;
 		String lastEndTime = "00:00:00";
-		int[] tempPrio = priority;
+		
+		int[] tempPrio = new int[priority.length];
+		for (int i = 0; i < priority.length; i++)
+		{
+			tempPrio[i] = priority[i];
+		}
+		
 		int sum = 1;
 		
 		while (sum != 0)
