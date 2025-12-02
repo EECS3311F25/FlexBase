@@ -139,7 +139,7 @@ public class HabitController
     	//long query to update habit
     	String query =
     			"UPDATE habit SET " +
-    			"HABIT_NAME = '" + newName + "', " + "HABIT_PRIORITY = '" + newPriority + "', " + "HABIT_NAME = '" + newStart + "', " + "HABIT_NAME = '" + newEnd + "', " + "WHERE user_id = '" + userID + "' " + "AND habit_name = '" + oldName + "' " + "AND HABIT_START_TIME = '" + oldStart + "' " + "AND HABIT_END_TIME = '" + oldEnd + "';";
+    			"HABIT_NAME = '" + newName + "', " + "HABIT_PRIORITY = '" + newPriority + "', " + "HABIT_TIME_START = '" + newStart + "', " + "HABIT_TIME_END = '" + newEnd + "', " + "WHERE user_id = '" + userID + "' " + "AND habit_name = '" + oldName + "' " + "AND HABIT_TIME_START = '" + oldStart + "' " + "AND HABIT_TIME_END = '" + oldEnd + "';";
     	
     	//Checks if it can actually put the query in, if not pops error dialog
     	try {
