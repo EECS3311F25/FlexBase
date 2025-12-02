@@ -3,8 +3,10 @@ package View;
 import javax.swing.*;
 
 import Controller.HabitController;
+import View.WeeklyPlanner.Habit;
 
 import java.awt.*;
+import java.util.List;
 
 /**
  * The {@code HabitPage} class provides a simple graphical interface for users
@@ -32,9 +34,11 @@ public class HabitPage {
 
     private JFrame frame;
     private JPanel habitListPanel; // panel to show added habits
+    private final String userID;
 
     public HabitPage(String userID) {
-        frame = new JFrame("FlexBase - Add Habit");
+        this.userID = userID;
+    	frame = new JFrame("FlexBase - Add Habit");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         frame.getContentPane().setBackground(Color.WHITE);
@@ -141,7 +145,7 @@ public class HabitPage {
 
         JScrollPane scrollPane = new JScrollPane(habitListPanel);
         scrollPane.setBounds(100, 350, 600, 180);
-        scrollPane.setBorder(BorderFactory.createTitledBorder("Your Habits"));
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Your Habits / Click To Edit"));
         frame.add(scrollPane);
         
         backButton.addActionListener(e -> {
@@ -168,6 +172,14 @@ public class HabitPage {
         // attempt to input habit into DB via controller class
         int priority = HabitController.inputHabit(frame, userID, habit, priorityText, start, end);
        
+        if (priority != 0) {
+        	loadUsersHabits();
+        }
+    });
+    
+    loadUsersHabits();
+    }
+        
         // Display habit on the screen
 /*
         JPanel itemPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -185,39 +197,95 @@ public class HabitPage {
 
         JOptionPane.showMessageDialog(frame, "Habit added successfully!");
 */
+        //brings in habits same way as from WeeklyPlanner
+        private void loadUsersHabits() {
+        	
+        	habitListPanel.removeAll();
+        	
+        	List<String> userHabitsStr = HabitController.outputHabits(userID);
+            for (String s: userHabitsStr) {
+                String[] parts = s.split("\\|");
+                if (parts.length == 4) {
+                    String name = parts[0].replace("Habit: ", "").trim();
+                    int priority = Integer.parseInt(parts[1].replace("Priority:", "").trim());
+                    String startStr = parts[2].replace("Start:", "").trim();
+                    String endStr= parts[3].replace("End:", "").trim();
+                    int startInt = HabitController.getHourasInt(startStr);
+                    int endInt = HabitController.getHourasInt(endStr);
+                    
+                    
+//                      TESTING NEW CARD
+             			Color cardColor = new Color(0, 0, 0);
+             			// Makes it Light Green for low prio
+             			if (priority <= 3) {
+             				cardColor = new Color(152, 251, 152);
+
+             			}
+             			// Makes it Blue for mid prio
+             			else if (priority <= 6) {
+             				cardColor = new Color(135, 206, 250);
+             			}
+             			// Purple for high prio
+             			else {
+             				cardColor = new Color(186, 85, 211);
+             			}
+             			HabitCard card = new HabitCard(priority, name, startInt, endInt, cardColor, false);
+             			String oldName = name;
+             			int oldPriority = priority;
+             			String oldStart = startStr;
+             			String oldEnd = endStr;
+             			
+             			card.addMouseListener(new java.awt.event.MouseAdapter() {
+             				@Override
+             				public void mouseEntered(java.awt.event.MouseEvent e) {
+             					card.setCursor(new Cursor(Cursor.HAND_CURSOR));
+             				}
+             				public void mouseClicked(java.awt.event.MouseEvent e) {
+             					EditDialog dialog = new EditDialog(frame, oldName, String.valueOf(oldPriority), oldStart, oldEnd);
+             					dialog.setVisible(true);
+             			
+             					
+             					//if Save is clicked (returns done from editDialog
+             					if(dialog.isDone()) {
+             						String newName = dialog.getNewName();
+             						String newPrio = dialog.getNewPriority();
+             						String newStart = dialog.getNewStart();
+             						String newEnd = dialog.getNewEnd();
+             						
+             						boolean works = HabitController.updateHabit(frame, userID, oldName,oldStart,oldEnd,newName,newPrio,newStart,newEnd);
+             						
+             						if (works == true) {
+             							loadUsersHabits();
+             						}
+             					}
+             				}
+             			});
+             			
+             			
+             
+             			
+
+             			habitListPanel.add(card);
+
+             			// Spacing
+             			habitListPanel.add(Box.createVerticalStrut(8));
+
+             			
+                    
+                 }
+
+              }
+            habitListPanel.revalidate();
+ 			habitListPanel.repaint();
+
+        }
+
+    
+            
+        
        
        // if habit is successfully entered into DB, display habit on input log
-       if (priority != 0)
-       {
-//         TESTING NEW CARD
-			Color cardColor = new Color(0, 0, 0);
-			// Makes it Light Green for low prio
-			if (priority <= 3) {
-				cardColor = new Color(152, 251, 152);
-
-			}
-			// Makes it Blue for mid prio
-			else if (priority <= 6) {
-				cardColor = new Color(135, 206, 250);
-			}
-			// Purple for high prio
-			else {
-				cardColor = new Color(186, 85, 211);
-			}
-
-			HabitCard card = new HabitCard(String.valueOf(priority), habit, start, cardColor);
-
-			habitListPanel.add(card);
-
-			// Spacing
-			habitListPanel.add(Box.createVerticalStrut(8));
-
-			habitListPanel.revalidate();
-			habitListPanel.repaint();
-       }
-    });
-
-    }
+       
     
     
     

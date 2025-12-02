@@ -92,7 +92,8 @@ public class WeeklyPlanner extends JFrame {
             dayPanels[i] = dayPanel;
             weekPanel.add(scrollPane);
         }
-
+        
+        
         // Load all habits for this user
         List<String> userHabitsStr = HabitController.outputHabits(userID);
         for (String s : userHabitsStr) {
@@ -157,18 +158,25 @@ public class WeeklyPlanner extends JFrame {
         JPanel dayPanel = dayPanels[habit.dayIndex];
 
         // Color by priority
-        Color bg = switch (habit.priority) {
-            case 5 -> new Color(255, 180, 180);
-            case 4 -> new Color(255, 210, 160);
-            case 3 -> new Color(255, 240, 140);
-            case 2 -> new Color(200, 255, 200);
-            default -> new Color(220, 255, 220);
-        };
+        Color cardColor = new Color(0, 0, 0);
+			// Makes it Light Green for low prio
+			if (habit.priority <= 3) {
+				cardColor = new Color(152, 251, 152);
+
+			}
+			// Makes it Blue for mid prio
+			else if (habit.priority <= 6) {
+				cardColor = new Color(135, 206, 250);
+			}
+			// Purple for high prio
+			else {
+				cardColor = new Color(186, 85, 211);
+			}
 
         for (int hour = habit.startHour; hour < habit.endHour && hour < 24; hour++) {
             Component comp = dayPanel.getComponent(hour);
             if (comp instanceof JPanel block) {
-                block.setBackground(bg);
+                block.setBackground(cardColor);
                 JLabel label = new JLabel(" " + habit.name, SwingConstants.LEFT);
                 label.setFont(new Font("SansSerif", Font.PLAIN, 11));
                 block.add(label, BorderLayout.CENTER);
