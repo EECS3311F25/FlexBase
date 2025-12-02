@@ -100,7 +100,7 @@ public class HomePage {
         JButton optimizeButton = new JButton("Optimize");
         optimizeButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
         optimizeButton.setFocusPainted(false);
-        optimizeButton.setBounds(200, 300, 150, 50);
+        optimizeButton.setBounds(150, 300, 150, 50);
         frame.add(optimizeButton);
         
         optimizeButton.addActionListener(e -> {

@@ -124,13 +124,13 @@ public class HabitPage {
         JButton weeklyPlannerButton = new JButton("Weekly Planner");
         weeklyPlannerButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
         weeklyPlannerButton.setFocusPainted(false);
-        weeklyPlannerButton.setBounds(620, 10, 150, 35); // adjust position as needed
+        weeklyPlannerButton.setBounds(620, 10, 150, 35);
         frame.add(weeklyPlannerButton);
 
         JButton OweeklyPlannerButton = new JButton("Optimized Weekly Planner");
         OweeklyPlannerButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
         OweeklyPlannerButton.setFocusPainted(false);
-        OweeklyPlannerButton.setBounds(610, 60, 150, 35); // adjust position as needed
+        OweeklyPlannerButton.setBounds(620, 60, 150, 35); 
         frame.add(OweeklyPlannerButton);
 
        // work in progress
