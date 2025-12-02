@@ -197,7 +197,7 @@ public class HabitPage {
 
         JOptionPane.showMessageDialog(frame, "Habit added successfully!");
 */
-        
+        //brings in habits same way as from WeeklyPlanner
         private void loadUsersHabits() {
         	
         	habitListPanel.removeAll();
