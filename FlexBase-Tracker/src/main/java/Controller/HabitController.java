@@ -111,6 +111,34 @@ public class HabitController
         return habits;
     }
     
+ // static method to fetch all habits for a given userID
+    public static List<String> outputOptHabits(String userID) {
+        List<String> habits = new ArrayList<>();
+        String query = "SELECT o_habit_name, o_habit_priority, o_habit_time_start, o_habit_time_end FROM optimized_habit WHERE user_id = '" + userID + "';";
+
+        try (Connection conn = DBConnector.connectDB();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                String habitName = rs.getString("o_habit_name");
+                int priority = rs.getInt("o_habit_priority");
+                String start = rs.getString("o_habit_time_start");
+                String end = rs.getString("o_habit_time_end");
+
+                String habitInfo = "Habit: " + habitName + " | Priority: " + priority +
+                                   " | Start: " + start + " | End: " + end;
+                habits.add(habitInfo);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error retrieving habits from database.", "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return habits;
+    }
+    
     public static int getHourasInt(String timeStr) {
     	
     	if(timeStr == null|| timeStr.isEmpty()) {

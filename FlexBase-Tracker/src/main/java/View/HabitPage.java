@@ -127,7 +127,11 @@ public class HabitPage {
         weeklyPlannerButton.setBounds(620, 10, 150, 35); // adjust position as needed
         frame.add(weeklyPlannerButton);
 
-       
+        JButton OweeklyPlannerButton = new JButton("Optimized Weekly Planner");
+        OweeklyPlannerButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        OweeklyPlannerButton.setFocusPainted(false);
+        OweeklyPlannerButton.setBounds(610, 60, 150, 35); // adjust position as needed
+        frame.add(OweeklyPlannerButton);
 
        // work in progress
 //        ImageIcon habitIcon = new ImageIcon(HabitPage.class.getResource("/images/Priorities_To_Do_List.png"));
@@ -161,7 +165,10 @@ public class HabitPage {
             new WeeklyPlanner(userID).show(); // open WeeklyPlanner and pass userID
         });
 
-        
+        OweeklyPlannerButton.addActionListener(e -> {
+            frame.dispose(); // close current habit page
+            new OWeeklyPlanner(userID).show(); // open WeeklyPlanner and pass userID
+        });
         
     addButton.addActionListener(e -> {
         String habit = habitField.getText().trim();
