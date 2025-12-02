@@ -244,9 +244,16 @@ public class HabitPage {
              						String newPrio = dialog.getNewPriority();
              						String newStart = dialog.getNewStart();
              						String newEnd = dialog.getNewEnd();
+             						
+             						boolean works = HabitController.updateHabit(frame, userID, oldName,oldStart,oldEnd,newName,newPrio,newStart,newEnd);
+             						
+             						if (works == true) {
+             							loadUsersHabits();
+             						}
              					}
              				}
              			});
+             			
              			
              
              			
