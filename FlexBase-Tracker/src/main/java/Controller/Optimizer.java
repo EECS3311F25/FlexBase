@@ -2,6 +2,8 @@ package Controller;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import Model.DBInput;
 import Model.DBOutput;
@@ -35,12 +37,11 @@ public class Optimizer
 		int weight = 0;
 		int[] priority = new int[size];
 		
-		double[] idealHours = new double[size];
+		double[] idealHoursDouble = new double[size];
+		int[] idealHours = new int[size];
 		
-		// use this (with updating in the following loop) to store hours, in case we want to use it for comparison in the future
-//		int[] hours = new int[rs.getFetchSize()];
-//		int[] startTime = new int[rs.getFetchSize()];
-//		int[] endTime = new int[rs.getFetchSize()];
+		String[] startTime = new String[size];
+		String[] endTime = new String[size];
 		
 		int index = 0;
 		
@@ -52,26 +53,65 @@ public class Optimizer
 			priority[index] = rs.getInt(4);
 			weight += priority[index];
 			
-			// use this to store hours, in case we want to use it for comparison in the future
-//			startTime[index] = rs.getInt(5);
-//			endTime[index] = rs.getInt(6);
-//			hours[index] = endTime[index] = startTime[index];
+//			totalTime += parseHour(rs.getTime(6).toString()) - parseHour(rs.getTime(5).toString());
 			
 			index++;
 		}
 		
-		String inQuery = "";
-		
 		// loop adds hours while maintaining parallel array values; then inputs optimized habits one at a time to DB
 		for (int i = 0; i < index; i++)
 		{
-			idealHours[i] = ((double) priority[i]/weight)*totalTime;
-//			System.out.println(priority[i] +" "+ weight +" "+ idealHours[i]);
+			idealHoursDouble[i] = ((double) priority[i]/weight)*totalTime;
+			idealHours[i] = (int) idealHoursDouble[i];
+		}
+		
+		int current = 0;
+		String lastEndTime = "00:00:00";
+		int[] tempPrio = priority;
+		int sum = 1;
+		
+		while (sum != 0)
+		{
+			sum = 0;
+			int maxPrio = 0;
 			
-			inQuery = "insert into OPTIMIZED_HABIT (user_id, o_habit_name, o_habit_priority, o_habit_hours) values"
-					+ "('" + userID + "', '" + habitName[i] + "', '" + priority[i] + "', '" + (int) idealHours[i] + "');";
+			for (int i = 0; i < tempPrio.length; i++)
+			{
+				if (tempPrio[i] != 0 && tempPrio[i] > maxPrio) { maxPrio = tempPrio[i]; current = i; }
+			}
+
+			startTime[current] = (parseHour(lastEndTime)) + ":00:00";
+			endTime[current] = (parseHour(startTime[current]) + idealHours[current]) + ":00:00";
+			lastEndTime = endTime[current];
+			
+			tempPrio[current] = 0;
+			
+			for (int i = 0; i < tempPrio.length; i++) {
+			    sum += tempPrio[i];
+			}
+		}
+		
+		String inQuery = "";
+		
+		for (int i = 0; i < index; i++)
+		{
+			inQuery = "insert into OPTIMIZED_HABIT (user_id, o_habit_name, o_habit_priority, o_habit_time_start, o_habit_time_end) values"
+					+ "('" + userID + "', '" + habitName[i] + "', '" + priority[i] + "', '" + startTime[i] + "', '" + endTime[i] + "');";
 			DBInput.input(inQuery);
 		}
+		
 	}
+	
+	static private int parseHour(String timeStr) {
+        try {
+            String[] parts = timeStr.split(":");
+            if (parts.length == 3) {
+                return Integer.parseInt(parts[0]); // use hour
+            }
+        } catch (Exception e) {
+            // fallback if parsing fails
+        }
+        return 0;
+    }
 	
 }
