@@ -127,9 +127,21 @@ public class HabitController
     }
     
     public static boolean updateHabit(JFrame frame, String userID, String oldName, String oldStart, String oldEnd, String newName, String newPriority, String newStart, String newEnd) {
+    	
+    	//checks if input is valid (non empty)
     	if(newName.isEmpty() || newPriority.isEmpty()|| newStart.isEmpty()||newEnd.isEmpty()) {
     		JOptionPane.showMessageDialog(frame, "Please enter information for all data", "Fill out Info", JOptionPane.WARNING_MESSAGE);
+    		return false;
     	}
+    	
+    	String updateStart = changeTimeForm(newStart);
+    	String updatedEnd = changeTimeForm(newEnd);
+    	
+    	String query =
+    			"UPDATE habit SET " +
+    			"HABIT_NAME = '" + newName + "', " + "HABIT_PRIORITY = '" + newPriority + "', " + "HABIT_NAME = '" + newStart + "', " + "HABIT_NAME = '" + newEnd + "', " + "WHERE user_id = '" + userID + "' " + "AND habit_name = '" + oldName + "' " + "AND HABIT_START_TIME = '" + oldStart + "' " + "AND HABIT_END_TIME = '" + oldEnd + "';";
+    	
+    	
     	return false;
     }
 	
