@@ -145,7 +145,7 @@ public class HabitPage {
 
         JScrollPane scrollPane = new JScrollPane(habitListPanel);
         scrollPane.setBounds(100, 350, 600, 180);
-        scrollPane.setBorder(BorderFactory.createTitledBorder("Your Habits"));
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Your Habits / Click To Edit"));
         frame.add(scrollPane);
         
         backButton.addActionListener(e -> {
@@ -236,9 +236,16 @@ public class HabitPage {
              			String oldEnd = endStr;
              			
              			card.addMouseListener(new java.awt.event.MouseAdapter() {
+             				@Override
+             				public void mouseEntered(java.awt.event.MouseEvent e) {
+             					card.setCursor(new Cursor(Cursor.HAND_CURSOR));
+             				}
              				public void mouseClicked(java.awt.event.MouseEvent e) {
              					EditDialog dialog = new EditDialog(frame, oldName, String.valueOf(oldPriority), oldStart, oldEnd);
              					dialog.setVisible(true);
+             			
+             					
+             					//if Save is clicked (returns done from editDialog
              					if(dialog.isDone()) {
              						String newName = dialog.getNewName();
              						String newPrio = dialog.getNewPriority();

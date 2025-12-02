@@ -49,6 +49,7 @@ class EditDialog extends JDialog {
 	public boolean isDone() { 
 		return done; 
 		}
+	
 	public String getNewName() { 
 		return nameF.getText().trim(); 
 		}

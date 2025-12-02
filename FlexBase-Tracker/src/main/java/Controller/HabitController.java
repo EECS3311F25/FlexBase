@@ -137,9 +137,7 @@ public class HabitController
     	String updatedStart = changeTimeForm(newStart);
     	String updatedEnd = changeTimeForm(newEnd);
     	//long query to update habit
-    	String query =
-    			"UPDATE habit SET " +
-    			"HABIT_NAME = '" + newName + "', " + "HABIT_PRIORITY = '" + newPriority + "', " + "HABIT_TIME_START = '" + updatedStart + "', " + "HABIT_TIME_END = '" + updatedEnd + "' " + "WHERE user_id = '" + userID + "' " + "AND habit_name = '" + oldName + "' " + "AND HABIT_TIME_START = '" + oldStart + "' " + "AND HABIT_TIME_END = '" + oldEnd + "';";
+    	String query = "UPDATE habit SET " +"HABIT_NAME = '" + newName + "', " + "HABIT_PRIORITY = '" + newPriority + "', " + "HABIT_TIME_START = '" + updatedStart + "', " + "HABIT_TIME_END = '" + updatedEnd + "' " + "WHERE user_id = '" + userID + "' " + "AND habit_name = '" + oldName + "' " + "AND HABIT_TIME_START = '" + oldStart + "' " + "AND HABIT_TIME_END = '" + oldEnd + "';";
     	
     	//Checks if it can actually put the query in, if not pops error dialog
     	try {
@@ -153,7 +151,5 @@ public class HabitController
     	
     }
 	
-	
-	
-	
+    
 }
