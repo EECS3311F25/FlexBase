@@ -153,7 +153,7 @@ public class HabitController
     }
 	
     
-}
+
     // ResultSet so that we can actually grab the habits and show them 
     public static ResultSet getHabits() throws SQLException {
     	int userID = UserSession.getID();
