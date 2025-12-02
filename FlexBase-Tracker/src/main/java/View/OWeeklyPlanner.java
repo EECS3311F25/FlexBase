@@ -9,7 +9,6 @@ import Controller.HabitController;
 
 public class OWeeklyPlanner extends JFrame {
 
-    private String userID;
     private final String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
     private final JPanel[] dayPanels = new JPanel[7];
     private final List<Habit> userHabits = new ArrayList<>();
@@ -40,7 +39,6 @@ public class OWeeklyPlanner extends JFrame {
     }
 
     public OWeeklyPlanner(String userID) {
-        this.userID = userID;
 
         setTitle("Weekly Habit Calendar");
         setSize(1300, 700);

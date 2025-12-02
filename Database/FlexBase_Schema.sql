@@ -21,7 +21,7 @@ create table HABIT (
  
  ## create OPTIMIZED_HABIT table to store optimized habits and their attributes
  create table OPTIMIZED_HABIT (
- O_HABIT_ID int not null auto_increment primary key,
+ O_HABIT_ID int not null primary key,
  USER_ID int not null,
  O_HABIT_NAME char(50) not null,
  O_HABIT_PRIORITY int not null,
@@ -46,16 +46,16 @@ create table HABIT (
 	#select * from habit;
 	#select * from optimized_habit;
   
-## clearing or resetting tables  
+## clearing or resetting tables
     #delete from user_info;
     #delete from habit;
-    #delete from optimized_habit;
+    #delete from optimized_habit where user_id = '1';
     
     #truncate table optimized_habit;
     
     #drop table user_info, habit, optimized_habit;
 
-## execute together to clear tables    
+## execute together to clear all tables    
     #SET FOREIGN_KEY_CHECKS = 0;
 	#TRUNCATE TABLE user_info;
 	#SET FOREIGN_KEY_CHECKS = 1;

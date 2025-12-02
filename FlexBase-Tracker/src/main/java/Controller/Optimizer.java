@@ -33,6 +33,7 @@ public class Optimizer
 		rs = DBOutput.getData(outQuery);
 		
 		String[] habitName = new String[size];
+		int[] habitID = new int[size];
 		
 		int weight = 0;
 		int[] priority = new int[size];
@@ -49,6 +50,7 @@ public class Optimizer
 		while (rs.next())
 		{
 			habitName[index] = rs.getString(3);
+			habitID[index] = rs.getInt(1);
 			
 			priority[index] = rs.getInt(4);
 			weight += priority[index];
@@ -65,9 +67,11 @@ public class Optimizer
 			idealHours[i] = (int) idealHoursDouble[i];
 		}
 		
+		// initializing variables for algorithm to store start/end time
 		int current = 0;
 		String lastEndTime = "00:00:00";
 		
+		// make copy of priority array to manipulate
 		int[] tempPrio = new int[priority.length];
 		for (int i = 0; i < priority.length; i++)
 		{
@@ -76,38 +80,51 @@ public class Optimizer
 		
 		int sum = 1;
 		
+		// loop finds highest priority habit, assigns it earliest start time
+		// and end time based on ideal hours/duration, then removes it from copy array
+		// continues to do so for all of the user's habits
+		// loops while there are still habits (found by priority in copy array)
 		while (sum != 0)
 		{
 			sum = 0;
 			int maxPrio = 0;
 			
+			// find max priority
 			for (int i = 0; i < tempPrio.length; i++)
 			{
 				if (tempPrio[i] != 0 && tempPrio[i] > maxPrio) { maxPrio = tempPrio[i]; current = i; }
 			}
-
+			
+			// assign start and end time for habit with highest priority
 			startTime[current] = (parseHour(lastEndTime)) + ":00:00";
 			endTime[current] = (parseHour(startTime[current]) + idealHours[current]) + ":00:00";
 			lastEndTime = endTime[current];
 			
+			// remove handled element from copy array
 			tempPrio[current] = 0;
 			
+			// count to see if there are still habits to assort
 			for (int i = 0; i < tempPrio.length; i++) {
 			    sum += tempPrio[i];
 			}
 		}
 		
+		// create query to input newly sorted optimized habits into DB
 		String inQuery = "";
 		
+		// reset previously optimized habits for user
+		DBInput.input("delete from optimized_habit where user_id = '" + userID + "';");
+		
 		for (int i = 0; i < index; i++)
-		{
-			inQuery = "insert into OPTIMIZED_HABIT (user_id, o_habit_name, o_habit_priority, o_habit_time_start, o_habit_time_end) values"
-					+ "('" + userID + "', '" + habitName[i] + "', '" + priority[i] + "', '" + startTime[i] + "', '" + endTime[i] + "');";
+		{			
+			inQuery = "insert into OPTIMIZED_HABIT (o_habit_id, user_id, o_habit_name, o_habit_priority, o_habit_time_start, o_habit_time_end) values"
+					+ "('" + habitID[i] + "', '" + userID + "', '" + habitName[i] + "', '" + priority[i] + "', '" + startTime[i] + "', '" + endTime[i] + "');";
 			DBInput.input(inQuery);
 		}
 		
 	}
 	
+	// method to convert from "hh:mm:ss" format to integer for hours of the day
 	static private int parseHour(String timeStr) {
         try {
             String[] parts = timeStr.split(":");
