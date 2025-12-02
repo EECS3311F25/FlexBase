@@ -27,3 +27,7 @@ Since we have direct communication between all members, we do not use pull reque
 Sprint 2 Demo Video:
 
 https://drive.google.com/file/d/11LvTGkR8crgmRktYyWqIVqEz_QNUNwn4/view?usp=drive_link
+
+Sprint 3 Demo Video:
+
+https://drive.google.com/file/d/1lBUQRGsCeXplPZnSZ7yxeGE-4VksICXX/view?usp=drive_link
