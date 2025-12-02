@@ -4,6 +4,20 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+/**Generates a habitCard ui component object that represents a users habit in an understandable format
+ * 
+ * Looks like a rectangle with different background colors depending on priority level
+ * 
+ * Used in the HabitPage view
+ * 
+ * Requires information about the habit to be input from the database, then displays priorty level, activity name, and the hours
+ * 
+ * Cannot interact with directly, but can be interacted with on individual pages with their logic.
+ * 
+ * Takes the priority (number), habit name, hours (alternatively/usually the start and end hours),
+ * the card color (determined within individual page logic), and a boolean to tell it whether to make the card larger or smaller
+**/
+
 class HabitCard extends JPanel {
 
     private Color bgColor;

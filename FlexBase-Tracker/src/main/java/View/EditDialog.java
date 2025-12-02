@@ -3,6 +3,17 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+/**
+ * Dialog class for the generation of a specific dialog box for editing HabitCards
+ * 
+ * Used on the HabitPage app
+ * 
+ * Handles habit values currently attached to HabitCard that was interacted with (Old__),
+ * then can take new input (new__), which are then used for editing the database.
+ * 
+ * Takes the frame, the habit name, priority, start time, and end time.
+ */
+
 class EditDialog extends JDialog {
 	//F for field to differentiate from the inputs
 	private JTextField nameF;
