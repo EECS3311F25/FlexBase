@@ -120,7 +120,7 @@ public class OWeeklyPlanner extends JFrame {
     // Distribute habits across the week with 5-hour max per day
     private void distributeAndPlotHabits() {
         int[] usedHoursPerDay = new int[7];
-        int maxHoursPerDay = 5;
+        int maxHoursPerDay = 23;
 
         for (Habit habit : userHabits) {
             int duration = habit.endHour - habit.startHour;
