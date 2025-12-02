@@ -3,8 +3,10 @@ package View;
 import javax.swing.*;
 
 import Controller.HomeController;
+import Controller.Optimizer;
 
 import java.awt.*;
+import java.sql.SQLException;
 
 /**
  * The {@code LoginPage} class represents the initial screen of the FlexBase Habit Tracker application.
@@ -91,6 +93,26 @@ public class HomePage {
             frame.dispose();            // close current home window
             new LoginPage().show();     // open the Login page
         });
+        
+        // TESTING (copy this code wherever 'optimize button' is needed)
+        
+//        //Optimize button
+//        JButton optimizeButton = new JButton("Optimize");
+//        optimizeButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
+//        optimizeButton.setFocusPainted(false);
+//        optimizeButton.setBounds(200, 300, 150, 50);
+//        frame.add(optimizeButton);
+//        
+//        optimizeButton.addActionListener(e -> {
+//            try {
+//				Optimizer.Optimize(userID);
+//			} catch (SQLException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}     // open the Habit page
+//        });
+        
+        // END OF TESTING
     }
 
     public void show() {

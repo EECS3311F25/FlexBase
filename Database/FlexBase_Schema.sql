@@ -15,8 +15,8 @@ create table HABIT (
  HABIT_NAME char(50) not null,
  HABIT_PRIORITY int not null,
  HABIT_TIME_START time,
- HABIT_TIME_END time
- #foreign key (USER_ID) references USER_INFO(USER_ID)
+ HABIT_TIME_END time,
+ foreign key (USER_ID) references USER_INFO(USER_ID)
  );
  
  ## create OPTIMIZED_HABIT table to store optimized habits and their attributes
@@ -25,8 +25,7 @@ create table HABIT (
  USER_ID int not null,
  O_HABIT_NAME char(50) not null,
  O_HABIT_PRIORITY int not null,
- O_HABIT_TIME_START time,
- O_HABIT_TIME_END time,
+ O_HABIT_HOURS int not null,
  foreign key (O_HABIT_ID) references HABIT(HABIT_ID),
  foreign key (USER_ID) references USER_INFO(USER_ID)
  );
@@ -51,10 +50,13 @@ create table HABIT (
     #delete from habit;
     #delete from optimized_habit;
     
+    #truncate table optimized_habit;
+    
     #drop table user_info, habit, optimized_habit;
 
 ## execute together to clear tables    
     #SET FOREIGN_KEY_CHECKS = 0;
 	#TRUNCATE TABLE user_info;
 	#SET FOREIGN_KEY_CHECKS = 1;
+
 

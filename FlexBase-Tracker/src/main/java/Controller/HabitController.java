@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.*;
 
 import Model.*;
+import View.UserSession;
 
 // Controller class for the HabitPage view
 public class HabitController
@@ -152,4 +153,17 @@ public class HabitController
     }
 	
     
+}
+    // ResultSet so that we can actually grab the habits and show them 
+    public static ResultSet getHabits() throws SQLException {
+    	int userID = UserSession.getID();
+    	
+    	String dbQuery = "SELECT * FROM habit WHERE user_id = '" + userID + "';";
+    	
+    	return DBOutput.getData(dbQuery);
+    }
+	
+	
+	
+	
 }
